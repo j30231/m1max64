@@ -1,1 +1,45 @@
-IyBMb2NhbCBMTE0gT2JzZXJ2YXRvcnkKCkNvbnRpbnVvdXNseSB1cGRhdGVkIGNvbXBhcmlzb24gb2YgKipsb2NhbCBMTE1zLCBxdWFudGl6YXRpb25zLCB1bmNlbnNvcmVkIHZhcmlhbnRzIGFuZCBpbmZlcmVuY2UgZW5naW5lcyoqIOKAlCBtZWFzdXJlZCBhZ2FpbnN0IHJlYWwgQXBwbGUgU2lsaWNvbiBoYXJkd2FyZS4KCvCfjJAgKipMaXZlIHNpdGU6KiogaHR0cHM6Ly9qMzAyMzEuZ2l0aHViLmlvL20xbWF4NjQvCgojIyBXaGF0IHRoaXMgaXMKCi0gKipNb2RlbCBjYXRhbG9nKiog4oCUIHF1YWxpdHkgYmVuY2htYXJrcywgYmVzdCBxdWFudGl6YXRpb24gcGVyIG1vZGVsLCBkZWNvZGUgc3BlZWQgb24gTTEgTWF4IDY0R0IKLSAqKlVuY2Vuc29yZWQgdHJhY2tlcioqIOKAlCBhYmxpdGVyYXRlZC91bmNlbnNvcmVkIHZhcmlhbnRzIHdpdGggdHJ1c3Qgbm90ZXMKLSAqKkVuZ2luZSBjb21wYXJpc29uKiog4oCUIGxsYW1hLmNwcCwgTUxYLCBvTUxYLCBNVFBMWCwgVGVuc29yRm9sZCwgU3RyYXRhLCBPbGxhbWEsIExNIFN0dWRpb+KApgotICoqRGVjaXNpb24gbW9kZWxzKiog4oCUIEpFVi0zNUIsIENsZWYtRmxhc2ggYW5kIHRoZSBuZXcgYnJlZWQgb2Ygc2NvcmluZy9jbGFzc2lmaWNhdGlvbiBtb2RlbHMKLSAqKlVwZGF0ZXMgZmVlZCoqIOKAlCBjaGFuZ2Vsb2cgaW5jbHVkaW5nIHB1YmxpYyBjb3JyZWN0aW9ucwoKIyMgTWV0aG9kb2xvZ3kKCkV2ZXJ5IHNwZWVkIGZpZ3VyZSBpcyBsYWJlbGVkOgoKLSA8c3BhbiBzdHlsZT0iY29sb3I6Z3JlZW4iPioqbWVhc3VyZWQqKjwvc3Bhbj4g4oCUIHJlYWwgYmVuY2htYXJrLCBzb3VyY2UgbGlua2VkCi0gPHNwYW4gc3R5bGU9ImNvbG9yOm9yYW5nZSI+Kiplc3RpbWF0ZWQqKjwvc3Bhbj4g4oCUIGV4dHJhcG9sYXRlZCwgdHJlYXQgd2l0aCBza2VwdGljaXNtCgpXZSBjb3JyZWN0IG91cnNlbHZlcyBpbiBwdWJsaWMuIFJldHJhY3Rpb25zIGFwcGVhciBpbiB0aGUgdXBkYXRlcyBmZWVkLgoKIyMgRGF0YQoKQWxsIGNvbnRlbnQgbGl2ZXMgaW4gYGRhdGEvKi5qc29uYDoKCnwgRmlsZSB8IENvbnRlbnRzIHwKfC0tLXwtLS18CnwgYGRhdGEvbWV0YS5qc29uYCB8IFNpdGUgbWV0YSwgaGFyZHdhcmUgZm9jdXMsIGxhc3QgdXBkYXRlIHwKfCBgZGF0YS9tb2RlbHMuanNvbmAgfCBNb2RlbCBjYXRhbG9nIHwKfCBgZGF0YS9lbmdpbmVzLmpzb25gIHwgSW5mZXJlbmNlIGVuZ2luZXMgfAp8IGBkYXRhL2RlY2lzaW9ucy5qc29uYCB8IERlY2lzaW9uL3Njb3JpbmcgbW9kZWxzIHwKfCBgZGF0YS91cGRhdGVzLmpzb25gIHwgQ2hhbmdlbG9nIGZlZWQgfAoKYGluZGV4Lmh0bWxgIGlzIGEgc3RhdGljIHNpbmdsZS1wYWdlIGFwcCB0aGF0IHJlbmRlcnMgdGhlc2UgZmlsZXMg4oCUIG5vIGJ1aWxkIHN0ZXAsIG5vIGRlcGVuZGVuY2llcy4KCiMjIFVwZGF0aW5nCgpEYXRhIGlzIHJlZnJlc2hlZCBieSBhdXRvbWF0ZWQgd2F0Y2ggam9icyAobW9kZWwgcmVsZWFzZXMsIGJlbmNobWFya3MsIFggcmVwb3J0cykuClRvIHVwZGF0ZSBtYW51YWxseSwgZWRpdCBgZGF0YS8qLmpzb25gIGFuZCBwdXNoIOKAlCBHaXRIdWIgUGFnZXMgcmVkZXBsb3lzIGF1dG9tYXRpY2FsbHkuCgojIyBDb250cmlidXRpbmcKClBScyB3ZWxjb21lIOKAlCBlc3BlY2lhbGx5ICoqbWVhc3VyZWQqKiBNMSBNYXggLyBBcHBsZSBTaWxpY29uIGJlbmNobWFya3Mgd2l0aCBzb3VyY2VzLgo=
+# Local LLM Observatory
+
+Continuously updated comparison of **local LLMs, quantizations, uncensored variants and inference engines** — measured against real Apple Silicon hardware.
+
+🌐 **Live site:** https://j30231.github.io/m1max64/
+
+## What this is
+
+- **Model catalog** — quality benchmarks, best quantization per model, decode speed on M1 Max 64GB
+- **Uncensored tracker** — abliterated/uncensored variants with trust notes
+- **Engine comparison** — llama.cpp, MLX, oMLX, MTPLX, TensorFold, Strata, Ollama, LM Studio…
+- **Decision models** — JEV-35B, Clef-Flash and the new breed of scoring/classification models
+- **Updates feed** — changelog including public corrections
+
+## Methodology
+
+Every speed figure is labeled:
+
+- <span style="color:green">**measured**</span> — real benchmark, source linked
+- <span style="color:orange">**estimated**</span> — extrapolated, treat with skepticism
+
+We correct ourselves in public. Retractions appear in the updates feed.
+
+## Data
+
+All content lives in `data/*.json`:
+
+| File | Contents |
+|---|---|
+| `data/meta.json` | Site meta, hardware focus, last update |
+| `data/models.json` | Model catalog |
+| `data/engines.json` | Inference engines |
+| `data/decisions.json` | Decision/scoring models |
+| `data/updates.json` | Changelog feed |
+
+`index.html` is a static single-page app that renders these files — no build step, no dependencies.
+
+## Updating
+
+Data is refreshed by automated watch jobs (model releases, benchmarks, X reports).
+To update manually, edit `data/*.json` and push — GitHub Pages redeploys automatically.
+
+## Contributing
+
+PRs welcome — especially **measured** M1 Max / Apple Silicon benchmarks with sources.
