@@ -3,6 +3,14 @@
     {
       "date": "2026-10-14",
       "kind": "discovery",
+      "title": "Qwen3.8-27B MTPLX 38.9 tok/s M1 Max measured; Qwen3.6-35B-A3B + gpt-oss-20b new data points",
+      "body": "Qwen3.8-27B: added the missing MTPLX 38.932 tok/s median on M1 Max 64GB (measured, Takuyan-labs) — replaces the old M4-Max-scaled 30-40 estimate. Reference rows: oMLX+MTP 55.1/71.7 on M4 Max, llama.cpp Q4_K_M ~14 on M3 Ultra (engine choice dominates on the hybrid arch). Notable gap: no plain-MLX M1 Max number beyond 15-18. Qwen3.6-35B-A3B: three new M1 Max 32GB rows — TurboQuant 3-bit 58.4, speculative 88, Ollama ~27 (all measured). gpt-oss-20b: soft ~60 (M1 Max 32GB, DavidAU abliterated GGUF), M4 Max MXFP4 100.2, M3 Ultra llama.cpp 116. Quality notes now carry vendor-reported scores labeled as such.",
+      "title_ko": "Qwen3.8-27B MTPLX 38.9 tok/s M1 Max 측정; Qwen3.6-35B-A3B + gpt-oss-20b 새로운 data points",
+      "body_ko": "Qwen3.8-27B: M1 Max 64GB에서 누락되었던 MTPLX 38.932 tok/s 중간값 추가 (실측, Takuyan-labs) — 기존 M4 Max 스케일링 추정치 30-40 대체. 참조 행: oMLX+MTP 55.1/71.7(M4 Max), llama.cpp Q4_K_M ~14(M3 Ultra, 엔진 선택이 하이브리드 아키에서 지배적). 눈에 띄는 격차: 15-18을 넘는 plain-MLX M1 Max 수치 없음. Qwen3.6-35B-A3B: M1 Max 32GB 신규 3개 행 — TurboQuant 3-bit 58.4, speculative 88, Ollama ~27 (모두 실측). gpt-oss-20b: 소프트 ~60(M1 Max 32GB, DavidAU abliterated GGUF), M4 Max MXFP4 100.2, M3 Ultra llama.cpp 116. 품질 메모에 벤더 보고 점수를 라벨링하여 표시."
+    },
+    {
+      "date": "2026-10-14",
+      "kind": "discovery",
       "title": "Gemma 4 26B-A4B M1 Max measured data in; Qwen3.5-9B / Nemotron estimates corrected down",
       "body": "Gemma 4 26B-A4B quants replaced with M1 Max measurements: MLX 4-bit 71-76 tok/s (recent stack, 2026-10) and 27 tok/s (older stack), llama.cpp UD-Q4_K_XL 40-58, Q4_K_M 35.7-51. Old 70-90 estimate (chip-unmarked 106 claim) was too optimistic. Qwen3.5-9B: no M1 Max datapoint exists; corrected to 25-45 estimated from neighboring chips (M4 24GB 21.3, M5 Max 31.09) — the old 101/M3-Ultra figure was a misread (B=4 aggregate). Nemotron-3.5-Lightning: no M1 Max datapoint; 60-100 estimated from M5 Pro 105 / M3 Ultra 168 neighbors.",
       "title_ko": "Gemma 4 26B-A4B M1 Max 실측 데이터 추가; Qwen3.5-9B / Nemotron 추정치 하향 조정",

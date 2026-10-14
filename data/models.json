@@ -18,8 +18,8 @@
       "params": "35B total / ~3B active",
       "quality": {
         "mmlu_pro": 85.2,
-        "note": "GPQA Diamond 86.0, SWE-bench Verified 73.4. ~99% of Qwen3.5-27B dense quality.",
-        "note_ko": "GPQA Diamond 86.0, SWE-bench Verified 73.4. Qwen3.5-27B dense 품질의 약 99%."
+        "note": "GPQA Diamond 86.0, SWE-bench Verified 73.4. ~99% of Qwen3.5-27B dense quality. Provider-reported via benchlm.ai: C-Eval 90%, IFBench 64.4%, QwenWebBench 1397 Elo.",
+        "note_ko": "GPQA Diamond 86.0, SWE-bench Verified 73.4. Qwen3.5-27B dense 품질의 ~99%. benchlm.ai 제공 업체 보고: C-Eval 90%, IFBench 64.4%, QwenWebBench 1397 Elo."
       },
       "quants": [
         {
@@ -71,6 +71,36 @@
           "speed_source": "Splash 1.1.0-m1 speculative decode 145.3 tok/s on M1 Max 64GB",
           "speed_source_url": "https://github.com/paperniuk/splash/releases/tag/1.1.0-m1",
           "speed_source_ko": "Splash 1.1.0-m1 speculative decode 145.3 tok/s (M1 Max 64GB)"
+        },
+        {
+          "format": "UD-MLX 3-bit (TurboQuant)",
+          "repo": null,
+          "size_gb": null,
+          "m1max_toks": "58.4",
+          "speed_type": "measured",
+          "speed_source": "mrx100 TurboQuant tq_4bit_fast 58.4 gen / 53.8 overall tok/s on M1 Max 32GB (131K ctx, TTFT 3.0s)",
+          "speed_source_url": "https://github.com/mrx100/mlx-async-prefill",
+          "speed_source_ko": "mrx100 TurboQuant tq_4bit_fast, M1 Max 32GB에서 58.4 gen / 53.8 overall tok/s (131K ctx, TTFT 3.0s)"
+        },
+        {
+          "format": "UD-MLX 4-bit + speculative",
+          "repo": null,
+          "size_gb": null,
+          "m1max_toks": "88",
+          "speed_type": "measured",
+          "speed_source": "mrx100 + speculative (gamma=4): 88 vs 53 baseline tok/s (1.66x) on M1 Max 32GB",
+          "speed_source_url": "https://github.com/mrx100/mlx-turboquant-launcher",
+          "speed_source_ko": "mrx100 + speculative (gamma=4): 88 vs 53 baseline tok/s (1.66x) M1 Max 32GB에서"
+        },
+        {
+          "format": "MLX 4-bit (Ollama)",
+          "repo": null,
+          "size_gb": null,
+          "m1max_toks": "27",
+          "speed_type": "measured",
+          "speed_source": "Ollama qwen3.6:35b-mlx ~27 tok/s on M1 Max 32GB (num_ctx 8192)",
+          "speed_source_url": "https://github.com/charoiteai/charoite_audio/blob/HEAD/docs/MODELS.md",
+          "speed_source_ko": "Ollama qwen3.6:35b-mlx, M1 Max 32GB에서 ~27 tok/s (num_ctx 8192)"
         }
       ],
       "rank": 1,
@@ -251,8 +281,8 @@
       "params": "21B total / 3.6B active",
       "quality": {
         "mmlu_pro": 74.8,
-        "note": "Range 71.8-76.4 across harnesses. A tier below 27B-class on knowledge; SWE-bench 52-61.",
-        "note_ko": "하네스별 71.8-76.4 범위. 지식 분야는 27B급보다 한 단계 아래; SWE-bench 52-61."
+        "note": "OpenAI vendor: MMLU 85.3, CodeForces 74.3, GPQA 71.5. Independent (arXiv 2508.12461, different methodology): MMLU 69, GSM8K 78, HumanEval 73. A tier below 27B-class on knowledge.",
+        "note_ko": "OpenAI 벤더: MMLU 85.3, CodeForces 74.3, GPQA 71.5. 독립 평가(arXiv 2508.12461, 다른 방법론): MMLU 69, GSM8K 78, HumanEval 73. 지식 면에서 27B급보다 한 티어 낮음."
       },
       "quants": [
         {
@@ -264,6 +294,36 @@
           "speed_source_url": "https://huggingface.co/halley-ai/gpt-oss-20b-MLX-4bit-gs32/discussions/1",
           "speed_type": "measured",
           "speed_source_ko": "M1 Max 32GB 63-72 (halley-ai 토론); M1 Max 64GB 약 50 (mlx-swift-lm)"
+        },
+        {
+          "format": "GGUF (DavidAU abliterated)",
+          "repo": "DavidAU/OpenAI-gpt-oss-20b-abliterated-uncensored-NEO-Imatrix-GGUF",
+          "size_gb": null,
+          "m1max_toks": "60",
+          "speed_type": "estimated",
+          "speed_source": "~60 tok/s @8K/16K ctx on M1 Max 32GB (skywork.ai; engine unstated — soft number)",
+          "speed_source_url": "https://skywork.ai/blog/evaluation/davidau-openai-gpt-oss-20b-abliterated-uncensored-neo-imatrix-gguf-free-chat-online",
+          "speed_source_ko": "~60 tok/s @8K/16K ctx, M1 Max 32GB에서 (skywork.ai; 엔진 미명시 — 대략적 수치)"
+        },
+        {
+          "format": "MLX MXFP4",
+          "repo": null,
+          "size_gb": null,
+          "m1max_toks": null,
+          "speed_type": "measured",
+          "speed_source": "MLX 0.31.3 MXFP4 100.2 decode tok/s (prefill 1528) on M4 Max (polvi/apple-silicon-llm-bench, 2026-06-11) — not M1 Max",
+          "speed_source_url": "https://github.com/polvi/apple-silicon-llm-bench",
+          "speed_source_ko": "MLX 0.31.3 MXFP4 100.2 decode tok/s (prefill 1528) M4 Max에서 측정 (polvi/apple-silicon-llm-bench, 2026-06-11) — M1 Max 아님"
+        },
+        {
+          "format": "GGUF (llama.cpp)",
+          "repo": null,
+          "size_gb": null,
+          "m1max_toks": null,
+          "speed_type": "measured",
+          "speed_source": "llama.cpp 116 tok/s on Mac M3 Ultra (llama.cpp own testing via TechRadar) — not M1 Max",
+          "speed_source_url": "https://www.techradar.com/ai-platforms-assistants/gpt-oss-20b-performance-faster-pc-rtx-nvidia",
+          "speed_source_ko": "Mac M3 Ultra에서 llama.cpp 116 tok/s (llama.cpp 자체 테스트, TechRadar 인용) — M1 Max 아님"
         }
       ],
       "rank": 4,
@@ -349,29 +409,48 @@
       "params": "27B dense",
       "quality": {
         "mmlu_pro": 86.0,
-        "note": "Reference quality tier (incumbent baseline). MMLU-Pro ~86.",
-        "note_ko": "기준 품질 등급 (기존 베이스라인). MMLU-Pro 약 86."
+        "note": "Reference quality tier (incumbent baseline). MMLU-Pro ~86. Vendor self-reported (Alibaba): GPQA Diamond 89.2, SWE-bench Pro 61.7, LiveCodeBench v6 90.3.",
+        "note_ko": "참조 품질 티어 (기존 기준선). MMLU-Pro ~86. 벤더 자체 보고 (알리바바): GPQA Diamond 89.2, SWE-bench Pro 61.7, LiveCodeBench v6 90.3."
       },
       "quants": [
         {
           "format": "MLX 4-bit",
+          "repo": "mlx-community/Qwen3.8-27B-4bit",
+          "size_gb": null,
           "m1max_toks": "15-18",
-          "repo": "lmstudio-community/Qwen3.8-27B-MLX-4bit",
-          "size_gb": 16.0,
-          "speed_source": "4 independent M1 Max 64GB sources converge on 15-18 tok/s",
-          "speed_source_url": "https://github.com/shunya1810/apple-silicon-llm-bench",
           "speed_type": "measured",
-          "speed_source_ko": "4개 독립 M1 Max 64GB 출처가 15-18 tok/s로 수렴"
+          "speed_source": "4 independent M1 Max 64GB sources converge on 15-18 tok/s",
+          "speed_source_url": "https://github.com/shunya1810/apple-silicon-llm-bench"
         },
         {
-          "format": "MLX 4-bit MTP",
-          "m1max_toks": "30-40",
-          "repo": "Jundot/Qwen3.8-27B-oQ4e-mtp",
+          "format": "MLX 4-bit MTP (MTPLX)",
+          "repo": "Youssofal/Qwen3.8-27B-MTPLX-Optimized-Speed",
           "size_gb": null,
-          "speed_source": "M4 Max 47.65 tok/s with MTP depth 3; M1 Max scaled (unverified)",
-          "speed_source_url": "https://github.com/greghilston/toolbox/blob/HEAD/docs/mtplx-vs-omlx.md",
-          "speed_type": "estimated",
-          "speed_source_ko": "M4 Max MTP depth 3에서 47.65 tok/s; M1 Max 환산 (미검증)"
+          "m1max_toks": "38.9",
+          "speed_type": "measured",
+          "speed_source": "MTPLX 2.11.3 38.932 tok/s median on M1 Max 64GB (32 GPU cores, greedy, cache-bypass)",
+          "speed_source_url": "https://github.com/Takuyan-labs/qwen38-m1max-mtplx-benchmark",
+          "speed_source_ko": "MTPLX 2.11.3, M1 Max 64GB(32 GPU cores, greedy, cache-bypass)에서 38.932 tok/s median 기록"
+        },
+        {
+          "format": "MLX 4-bit + MTP (oMLX)",
+          "repo": null,
+          "size_gb": null,
+          "m1max_toks": null,
+          "speed_type": "measured",
+          "speed_source": "oMLX 0.7.0 55.1 prose / 71.7 code tok/s on Mac Studio M4 Max 64GB (800-tok prompt, aiperf, 2026-10-12) — not M1 Max",
+          "speed_source_url": "http://dev.to/jrodeiro5/qwen38-vs-ornith-15-on-a-mac-speed-and-code-review-2gf1",
+          "speed_source_ko": "oMLX 0.7.0, Mac Studio M4 Max 64GB에서 55.1 prose / 71.7 code tok/s 기록 (800-tok prompt, aiperf, 2026-10-12) — M1 Max 아님"
+        },
+        {
+          "format": "GGUF Q4_K_M (Ollama / llama.cpp)",
+          "repo": null,
+          "size_gb": null,
+          "m1max_toks": null,
+          "speed_type": "measured",
+          "speed_source": "Ollama Q4_K_M ~14.0 tok/s on Mac Studio M3 Ultra 256GB; llama.cpp crawls at 1.5-3.3 tok/s on Apple Silicon (hybrid arch) — engine choice dominates, not M1 Max",
+          "speed_source_url": "https://viralpique.com/run-qwen3-8-27b-locally-real-numbers-from-my-mac-studio/",
+          "speed_source_ko": "Ollama Q4_K_M ~14.0 tok/s (Mac Studio M3 Ultra 256GB); llama.cpp은 Apple Silicon(하이브리드 아키텍처)에서 1.5~3.3 tok/s로 기어감 — 엔진 선택이 주도적, M1 Max가 아님"
         }
       ],
       "rank": null,
@@ -396,8 +475,8 @@
         }
       ],
       "vendor": "Qwen",
-      "verdict": "The incumbent baseline: best quality tier, but 15 tok/s on M1 Max is why the speed hunt exists.",
-      "verdict_ko": "기존 베이스라인: 최상위 품질이지만 M1 Max에서 15 tok/s라서 속도 사냥이 시작된 이유."
+      "verdict": "The incumbent baseline: best quality tier, but 15 tok/s plain MLX on M1 Max is why the speed hunt exists. MTPLX lifts it to 38.9. Engine choice dominates on its hybrid arch: llama.cpp crawls (1.5-14 tok/s) while MLX/oMLX do 15-72.",
+      "verdict_ko": "기존 기준선: 최고 품질 티어지만, M1 Max에서 plain MLX 기준 15 tok/s라 속도 개선이 필요한 이유다. MTPLX가 38.9로 끌어올린다. 하이브리드 아키텍처에서 엔진 선택이 성능을 가른다: llama.cpp는 1.5~14 tok/s로 느린 반면, MLX/oMLX는 15~72 tok/s를 낸다."
     },
     {
       "arch": "Dense (ternary)",
