@@ -662,7 +662,15 @@
         "agent",
         "moe"
       ],
-      "uncensored": [],
+      "uncensored": [
+        {
+          "repo": "AtomicChat/LFM2.5-24B-A2B-Uncensored-GGUF",
+          "format": "GGUF (IQ3_M-Q8_0)",
+          "trust": "medium",
+          "note": "AtomicChat abliterated GGUF (IQ3_M to Q8_0); vendor claims refusals cut 96% to 1% and MMLU 64.4% to 65.6% (self-reported, 2026-10-14)",
+          "note_ko": "AtomicChat abliterated GGUF (IQ3_M to Q8_0); 벤더는 거부율이 96%에서 1%로 감소했고 MMLU가 64.4%에서 65.6%로 상승했다고 주장한다(자체 보고, 2026-10-14)."
+        }
+      ],
       "vendor": "Liquid AI",
       "verdict": "Agent-specialized MoE: strongest on tool/agent benches, weaker on knowledge/coding than Qwen3.6-35B-A3B. M1 Max ~90-140 tok/s estimated from the vendor's 184 tok/s M5 Max claim (bandwidth-scaled, unverified) — no community Apple Silicon measurement exists as of 2026-10-14. Caveats: vendor claim is decode-only — prefill cost and KV-cache pressure at 131K context are unaddressed.",
       "verdict_ko": "에이전트 특화 MoE: 툴/에이전트 벤치마크에서 최강, 지식/코딩은 Qwen3.6-35B-A3B보다 약함. M1 Max ~90-140 tok/s (벤더의 184 tok/s M5 Max 주장에서 대역폭 비례 추정, 미검증) — 2026-10-14 기준 커뮤니티 Apple Silicon 측정값 없음. 주의: 벤더 주장은 decode-only — 131K 컨텍스트에서 prefill 비용과 KV-cache 압박은 미고려."
