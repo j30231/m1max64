@@ -1,6 +1,14 @@
 {
   "updates": [
     {
+      "date": "2026-10-14",
+      "kind": "discovery",
+      "title": "Ternary-Bonsai-2-27B M1 Max measured data in; Qwen3.6-35B-A3B hits 145.3 tok/s on Splash",
+      "body": "Bonsai 2 quants replaced with real M1 Max 64GB measurements: Splash speculative 27.6 tok/s (npanj bench) and 49-58 tok/s (short prompts), oMLX + prism-hadamard 18.1 tok/s warm. Removed the old MTPLX 35-45 estimate (MTPLX README cites 64.4 tok/s with no hardware listed; boxabirds notes Bonsai 2 lacks MTP heads). Bonus: Qwen3.6-35B-A3B via Splash speculative hits 145.3 tok/s decode on M1 Max 64GB (incoai/Qwen3.6-35B-A3B-Splash). LFM2.5-24B-A2B and MiniCPM-V-4.7-35B-A3B still have zero community Apple Silicon measurements.",
+      "title_ko": "Ternary-Bonsai-2-27B M1 Max 측정 데이터 공개; Qwen3.6-35B-A3B, Splash에서 145.3 tok/s 기록",
+      "body_ko": "Bonsai 2 정량화 데이터가 실제 M1 Max 64GB 측정값으로 교체됨: Splash speculative 27.6 tok/s (npanj 벤치) 및 49-58 tok/s (짧은 프롬프트), oMLX + prism-hadamard 18.1 tok/s warm. 기존 MTPLX 35-45 추정치 제거 (MTPLX README는 하드웨어 미기재 상태에서 64.4 tok/s 인용; boxabirds에 따르면 Bonsai 2에는 MTP 헤드 없음). 보너스: Qwen3.6-35B-A3B가 Splash speculative로 M1 Max 64GB에서 145.3 tok/s decode 달성 (incoai/Qwen3.6-35B-A3B-Splash). LFM2.5-24B-A2B와 MiniCPM-V-4.7-35B-A3B는 여전히 커뮤니티 Apple Silicon 측정값이 없음."
+    },
+    {
       "body": "User-flagged model added as a formal candidate. Ternary-quantized Qwen3.8-27B (true 1.72 bits/weight): GGUF 5.95GB, MLX 8.60GB. Vendor claims 98.2% of FP16 retained across 20 benchmarks — no independent verification exists. M1 Max: 22-27 tok/s plain MLX (estimated from M3 Max 27.09 measured), 35-45 with MTPLX. Verdict: the size champion (6-9GB), not the speed champion — below the 50 tok/s target.",
       "date": "2026-10-14",
       "kind": "model",

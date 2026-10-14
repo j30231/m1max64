@@ -61,6 +61,16 @@
           "speed_source_url": "https://github.com/hokar3361/moe-on-a-desk",
           "speed_type": "estimated",
           "speed_source_ko": "moe-on-a-desk 포크 M4 Max 226.9 실측을 대역폭 비례 0.73배 환산 (미검증, 실험 단계)"
+        },
+        {
+          "format": "Splash speculative",
+          "repo": "incoai/Qwen3.6-35B-A3B-Splash",
+          "size_gb": null,
+          "m1max_toks": "145.3",
+          "speed_type": "measured",
+          "speed_source": "Splash 1.1.0-m1 speculative decode 145.3 tok/s on M1 Max 64GB",
+          "speed_source_url": "https://github.com/paperniuk/splash/releases/tag/1.1.0-m1",
+          "speed_source_ko": "Splash 1.1.0-m1 speculative decode 145.3 tok/s (M1 Max 64GB)"
         }
       ],
       "rank": 1,
@@ -379,34 +389,44 @@
       },
       "quants": [
         {
-          "format": "MLX 2-bit",
-          "m1max_toks": "22-27",
-          "repo": "prism-ml/Ternary-Bonsai-2-27B-mlx-2bit",
-          "size_gb": 8.6,
-          "speed_source": "M3 Max 48GB measured 27.09 tok/s (same 400GB/s bandwidth class)",
-          "speed_source_url": "https://github.com/prismml-eng/bonsai-demo/blob/HEAD/community-benchmarks/bonsai2/mlx-m3-max-48gb-macos.md",
-          "speed_type": "estimated",
-          "speed_source_ko": "M3 Max 48GB 실측 27.09 tok/s (동일 400GB/s 대역폭급)"
-        },
-        {
-          "format": "MLX 2-bit MTP",
-          "m1max_toks": "35-45",
-          "repo": "Youssofal/Ternary-Bonsai-2-27B-MTPLX-Optimized-Speed",
-          "size_gb": null,
-          "speed_source": "M5 Max 64.4 tok/s with MTPLX, bandwidth-scaled 400/614",
-          "speed_source_url": null,
-          "speed_type": "estimated",
-          "speed_source_ko": "M5 Max MTPLX 64.4 tok/s를 대역폭 비례 400/614로 환산"
-        },
-        {
-          "format": "GGUF ternary PTQ1_0",
-          "m1max_toks": null,
+          "format": "GGUF ternary PQ2_0 (Splash speculative)",
           "repo": "prism-ml/Ternary-Bonsai-2-27B-gguf",
           "size_gb": 5.95,
-          "speed_source": "Requires PrismML custom llama.cpp fork (stock llama.cpp cannot load the format)",
-          "speed_source_url": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf",
-          "speed_type": "estimated",
-          "speed_source_ko": "PrismML 커스텀 llama.cpp 포크 필요 (일반 llama.cpp는 해당 포맷 로드 불가)"
+          "m1max_toks": "27.6",
+          "speed_type": "measured",
+          "speed_source": "Splash 1.1.0-m1 speculative decode 27.6 tok/s on M1 Max 64GB (npanj 5-prompt bench, TTFT 63s @ 8K ctx)",
+          "speed_source_url": "https://github.com/paperniuk/splash/releases/tag/1.1.0-m1",
+          "speed_source_ko": "Splash 1.1.0-m1이 M1 Max 64GB에서 speculative decode로 27.6 tok/s 달성 (npanj 5-prompt bench, TTFT 63s @ 8K ctx)"
+        },
+        {
+          "format": "GGUF ternary PQ2_0 (Splash, short prompts)",
+          "repo": "prism-ml/Ternary-Bonsai-2-27B-gguf",
+          "size_gb": 5.95,
+          "m1max_toks": "49-58",
+          "speed_type": "measured",
+          "speed_source": "Splash 1.1.0-m1/1.2.1-m1 49-58 tok/s on M1 Max 64GB (short prompts, 11GB budget cap)",
+          "speed_source_url": "https://github.com/paperniuk/splash/releases/tag/1.2.1-m1",
+          "speed_source_ko": "Splash 1.1.0-m1/1.2.1-m1, M1 Max 64GB에서 49-58 tok/s (short prompts, 11GB budget cap)"
+        },
+        {
+          "format": "MLX 2-bit (oMLX + prism-hadamard)",
+          "repo": "prism-ml/Ternary-Bonsai-2-27B-mlx-2bit",
+          "size_gb": 8.6,
+          "m1max_toks": "18.1",
+          "speed_type": "measured",
+          "speed_source": "oMLX 0.7.0.dev2 + prism-hadamard adapter 18.1 tok/s warm on M1 Max 64GB (v1 pack 25.3 on same machine)",
+          "speed_source_url": "https://github.com/paperniuk/omlx-prism-hadamard",
+          "speed_source_ko": "oMLX 0.7.0.dev2 + prism-hadamard adapter 18.1 tok/s warm (M1 Max 64GB, v1 pack 25.3 동일 머신)"
+        },
+        {
+          "format": "GGUF ternary PQ2_0 (PrismML llama.cpp fork)",
+          "repo": "prism-ml/Ternary-Bonsai-2-27B-gguf",
+          "size_gb": 5.95,
+          "m1max_toks": null,
+          "speed_type": "measured",
+          "speed_source": "Weschera: 34.5 prose / 34.3 code tok/s on Mac Studio M4 Max 128GB (prefill 242); PTQ1_0 31.2/31.1 — not M1 Max",
+          "speed_source_url": "https://github.com/Weschera/Bonsai-2-27B-Mac",
+          "speed_source_ko": "Weschera: 34.5 prose / 34.3 code tok/s (Mac Studio M4 Max 128GB, prefill 242); PTQ1_0 31.2/31.1 — M1 Max 아님"
         }
       ],
       "rank": null,
@@ -432,8 +452,8 @@
         }
       ],
       "vendor": "PrismML",
-      "verdict": "The size champion (6-9GB for 27B-class), not the speed champion: 22-45 tok/s on M1 Max, below the 50 target.",
-      "verdict_ko": "속도 챔피언이 아닌 크기 챔피언 (27B급을 6-9GB에): M1 Max에서 22-45 tok/s로 50 목표 미달."
+      "verdict": "The size champion (6-9GB for 27B-class), not the speed champion: real M1 Max measurements now in — 18.1 (oMLX) to 27.6-58 (Splash speculative) tok/s, still below the 50 target for sustained prose.",
+      "verdict_ko": "크기 챔피언(27B급 6~9GB), 속도 챔피언은 아님: 실제 M1 Max 측정 결과 추가 — 18.1(oMLX) ~ 27.6-58(Splash speculative) tok/s, 지속적인 산문 생성 위한 50 목표엔 여전히 미달."
     },
     {
       "arch": "MoE",
@@ -446,8 +466,8 @@
       "params": "35.2B total / 3B active",
       "quality": {
         "mmlu_pro": null,
-        "note": "No independent benchmarks exist. Vendor claims above Qwen3.6-35B-A3B — unverified. Multimodal (SigLIP2 vision tower).",
-        "note_ko": "독립 벤치마크 없음. 벤더는 Qwen3.6-35B-A3B 이상 주장 — 미검증. 멀티모달 (SigLIP2 vision tower)."
+        "note": "No benchmarks exist anywhere as of 2026-10-14 — no vendor Apple Silicon numbers, no quants, no serving recipe, no license disclosed (orcarouter.ai notes zero downloads). Multimodal (SigLIP2 vision tower).",
+        "note_ko": "2026-10-14 기준으로 어떤 벤치마크도 존재하지 않음 — 벤더 Apple Silicon 수치 없음, 양자화 없음, 서빙 레시피 없음, 라이선스 미공개 (orcarouter.ai 기준 다운로드 0). 멀티모달 (SigLIP2 vision tower)."
       },
       "quants": [
         {
@@ -535,8 +555,8 @@
       ],
       "uncensored": [],
       "vendor": "Liquid AI",
-      "verdict": "Agent-specialized MoE: strongest on tool/agent benches, weaker on knowledge/coding than Qwen3.6-35B-A3B. M1 Max ~120-140 tok/s estimated from the vendor's 184 tok/s M5 Max claim (bandwidth-scaled, unverified). Caveats: vendor claim is decode-only — prefill cost and KV-cache pressure at 131K context are unaddressed.",
-      "verdict_ko": "에이전트 특화 MoE: 도구/에이전트 벤치 최강, 지식/코딩은 Qwen3.6-35B-A3B에 열위. M1 Max 약 120-140 tok/s 추정 (벤더의 M5 Max 184 tok/s 주장을 대역폭 환산, 미검증). 주의: 벤더 주장은 decode-only — prefill 비용과 131K 컨텍스트의 KV 캐시 압박은 미반영."
+      "verdict": "Agent-specialized MoE: strongest on tool/agent benches, weaker on knowledge/coding than Qwen3.6-35B-A3B. M1 Max ~90-140 tok/s estimated from the vendor's 184 tok/s M5 Max claim (bandwidth-scaled, unverified) — no community Apple Silicon measurement exists as of 2026-10-14. Caveats: vendor claim is decode-only — prefill cost and KV-cache pressure at 131K context are unaddressed.",
+      "verdict_ko": "에이전트 특화 MoE: 툴/에이전트 벤치마크에서 최강, 지식/코딩은 Qwen3.6-35B-A3B보다 약함. M1 Max ~90-140 tok/s (벤더의 184 tok/s M5 Max 주장에서 대역폭 비례 추정, 미검증) — 2026-10-14 기준 커뮤니티 Apple Silicon 측정값 없음. 주의: 벤더 주장은 decode-only — 131K 컨텍스트에서 prefill 비용과 KV-cache 압박은 미고려."
     }
   ]
 }
