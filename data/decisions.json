@@ -1,1 +1,30 @@
-{"models":[{"base":"Qwen3.5-35B-A3B","id":"jev-35b","latency":"~204ms median per request (test env)","license":"Apache-2.0","name":"JEV-35B","size":"NVFP4 25.6GB (~23GiB weights); fits a single 32-48GB GPU","vendor":"AutoTrust Labs","verdict":"The closest match to a classification-criteria-optimized LLM: 256 options scored per pass at interactive latency.","what":"System 1 decision model: compares up to 256 text/image options in one forward pass and returns calibrated probabilities. Decision Index 0.3 public suite: 59.73 (beats JEV-27B-VL 53.64). Quantized NVFP4 keeps 96.6% of BF16 decisions."},{"base":"Qwen3.5-9B","id":"clef-flash","latency":"38.8ms median (self-reported, unverified)","license":"Apache-2.0","name":"Clef-Flash","size":"9.41B params BF16","vendor":"Cloudflare","verdict":"A real decision model, but not a chat LLM and not useful on Mac/MLX — excluded from the main rankings.","what":"Decision model: takes state (text/JSON/image/video) + typed question schema, returns per-option probabilities in a single prefill-only forward pass. No free-form text generation. Jev/SystemOne API-compatible. Decision Index: 5th place, 57.07 (self-reported)."}]}
+{
+  "models": [
+    {
+      "base": "Qwen3.5-35B-A3B",
+      "id": "jev-35b",
+      "latency": "~204ms median per request (test env)",
+      "license": "Apache-2.0",
+      "name": "JEV-35B",
+      "size": "NVFP4 25.6GB (~23GiB weights); fits a single 32-48GB GPU",
+      "vendor": "AutoTrust Labs",
+      "verdict": "The closest match to a classification-criteria-optimized LLM: 256 options scored per pass at interactive latency.",
+      "what": "System 1 decision model: compares up to 256 text/image options in one forward pass and returns calibrated probabilities. Decision Index 0.3 public suite: 59.73 (beats JEV-27B-VL 53.64). Quantized NVFP4 keeps 96.6% of BF16 decisions.",
+      "what_ko": "System 1 decision 모델: 한 번의 forward pass로 최대 256개 텍스트/이미지 옵션을 비교하고 보정된 확률(calibrated probabilities) 반환. Decision Index 0.3 공개 스위트: 59.73 (JEV-27B-VL 53.64 상회). NVFP4 양자화해도 BF16 결정의 96.6% 유지.",
+      "verdict_ko": "분류기준 최적화 LLM에 가장 근접: 패스당 256개 옵션 스코어링을 인터랙티브 지연으로."
+    },
+    {
+      "base": "Qwen3.5-9B",
+      "id": "clef-flash",
+      "latency": "38.8ms median (self-reported, unverified)",
+      "license": "Apache-2.0",
+      "name": "Clef-Flash",
+      "size": "9.41B params BF16",
+      "vendor": "Cloudflare",
+      "verdict": "A real decision model, but not a chat LLM and not useful on Mac/MLX — excluded from the main rankings.",
+      "what": "Decision model: takes state (text/JSON/image/video) + typed question schema, returns per-option probabilities in a single prefill-only forward pass. No free-form text generation. Jev/SystemOne API-compatible. Decision Index: 5th place, 57.07 (self-reported).",
+      "what_ko": "Decision 모델: 상태(텍스트/JSON/이미지/비디오) + typed question schema를 입력받아 단일 prefill-only forward pass로 옵션별 확률 반환. 자유 텍스트 생성 없음. Jev/SystemOne API 호환. Decision Index 5위, 57.07 (자체 발표).",
+      "verdict_ko": "실제 decision 모델이지만 채팅 LLM이 아니고 Mac/MLX에서 무용 — 메인 순위에서 제외."
+    }
+  ]
+}

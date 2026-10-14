@@ -16,13 +16,15 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
 .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-header.hero{padding:48px 0 28px;border-bottom:1px solid var(--border)}
+header.hero{padding:48px 0 28px;border-bottom:1px solid var(--border);position:relative}
 header.hero h1{font-size:2rem;letter-spacing:-.5px}
 header.hero h1 .dot{color:var(--green)}
 header.hero p.tag{color:var(--muted);margin-top:8px;max-width:720px}
 .badges{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
 .badge{font-size:12px;padding:4px 10px;border:1px solid var(--border);border-radius:20px;color:var(--muted);background:var(--panel)}
 .badge.hw{border-color:var(--green);color:var(--green)}
+.langbtn{position:absolute;top:20px;right:20px;background:var(--panel);border:1px solid var(--border);color:var(--text);border-radius:20px;padding:6px 16px;font-size:13px;cursor:pointer;font-weight:600}
+.langbtn:hover{border-color:var(--accent)}
 .method{margin:20px 0;padding:14px 18px;background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:6px;font-size:13.5px;color:var(--muted)}
 .method strong{color:var(--text)}
 nav.tabs{position:sticky;top:0;background:rgba(13,17,23,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);z-index:10}
@@ -39,7 +41,7 @@ section p.sub{color:var(--muted);font-size:13.5px;margin-bottom:18px}
 .card h3{font-size:1.05rem;margin-bottom:4px}
 .card .meta{font-size:12.5px;color:var(--muted);margin-bottom:10px}
 .card .verdict{font-size:13.5px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
-.rank{ display:inline-block;font-size:11px;font-weight:700;background:var(--accent);color:#04121f;border-radius:4px;padding:2px 8px;margin-right:6px;vertical-align:middle}
+.rank{display:inline-block;font-size:11px;font-weight:700;background:var(--accent);color:#04121f;border-radius:4px;padding:2px 8px;margin-right:6px;vertical-align:middle}
 table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--panel);border-radius:8px;overflow:hidden}
 th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
 th{background:var(--panel2);color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
@@ -77,171 +79,185 @@ code{background:var(--panel2);padding:2px 6px;border-radius:4px;font-size:12.5px
 
 <header class="hero">
   <div class="wrap">
+    <button class="langbtn" id="langBtn">한국어</button>
     <h1>Local LLM Observatory<span class="dot">.</span></h1>
-    <p class="tag">Continuously updated comparison of local LLMs, quantizations, uncensored variants and inference engines — measured against real Apple Silicon hardware, not marketing numbers.</p>
+    <p class="tag" id="tagline"></p>
     <div class="badges">
       <span class="badge hw" id="hwBadge">Apple M1 Max · 64GB</span>
       <span class="badge" id="updBadge">Updated —</span>
-      <span class="badge" id="cntBadge">— models · — engines</span>
+      <span class="badge" id="cntBadge">—</span>
     </div>
   </div>
 </header>
 
-<div class="method wrap">
-  <strong>Methodology:</strong> every speed figure is labeled
-  <span class="pill measured">measured</span> (real benchmark, source linked) or
-  <span class="pill estimated">estimated</span> (extrapolated — treat with skepticism).
-  We correct ourselves in public: see the updates feed for retractions.
-</div>
+<div class="method wrap" id="methodBox"></div>
 
 <nav class="tabs"><div class="wrap" id="tabBar">
-  <button data-t="picks" class="active">Top Picks</button>
-  <button data-t="models">Models</button>
-  <button data-t="uncensored">Uncensored</button>
-  <button data-t="engines">Engines</button>
-  <button data-t="decisions">Decision Models</button>
-  <button data-t="updates">Updates</button>
+  <button data-t="picks" class="active"></button>
+  <button data-t="models"></button>
+  <button data-t="uncensored"></button>
+  <button data-t="engines"></button>
+  <button data-t="decisions"></button>
+  <button data-t="updates"></button>
 </div></nav>
 
 <div class="wrap">
   <section id="picks" class="active">
-    <h2>Top picks for M1 Max 64GB</h2>
-    <p class="sub">Ranked by the combination of model quality and real decode speed on this hardware. Target: 50–100 tok/s.</p>
+    <h2 data-s="picks_h"></h2><p class="sub" data-s="picks_s"></p>
     <div class="cards" id="picksCards"><div class="loading">Loading…</div></div>
   </section>
-
   <section id="models">
-    <h2>Model catalog</h2>
-    <p class="sub">Quality figures are vendor/official benchmarks (MMLU-Pro where available). Speed is decode tok/s on M1 Max 64GB.</p>
-    <div class="filters" id="modelFilters">
-      <button data-f="all" class="active">All</button>
-      <button data-f="fast">50+ tok/s</button>
-      <button data-f="moe">MoE</button>
-      <button data-f="uncensored">Has uncensored</button>
-    </div>
-    <div style="overflow-x:auto"><table id="modelTable"><thead><tr>
-      <th>Model</th><th>Params</th><th>Quality</th><th>Best quant (M1 Max)</th><th>Speed</th><th>Uncensored</th><th>Verdict</th>
-    </tr></thead><tbody></tbody></table></div>
+    <h2 data-s="models_h"></h2><p class="sub" data-s="models_s"></p>
+    <div class="filters" id="modelFilters"></div>
+    <div style="overflow-x:auto"><table id="modelTable"><thead><tr id="modelHead"></tr></thead><tbody></tbody></table></div>
   </section>
-
   <section id="uncensored">
-    <h2>Uncensored tracker</h2>
-    <p class="sub">Abliterated / uncensored variants per base model. Trust reflects account history and download counts, not an endorsement.</p>
-    <div style="overflow-x:auto"><table id="uncTable"><thead><tr>
-      <th>Base model</th><th>Variant repo</th><th>Format</th><th>Trust</th><th>Note</th>
-    </tr></thead><tbody></tbody></table></div>
+    <h2 data-s="unc_h"></h2><p class="sub" data-s="unc_s"></p>
+    <div style="overflow-x:auto"><table id="uncTable"><thead><tr id="uncHead"></tr></thead><tbody></tbody></table></div>
   </section>
-
   <section id="engines">
-    <h2>Inference engines</h2>
-    <p class="sub">llama.cpp and its alternatives on Apple Silicon. Speed is Qwen3.8-27B-class decode unless noted.</p>
+    <h2 data-s="eng_h"></h2><p class="sub" data-s="eng_s"></p>
     <div class="cards" id="engineCards"><div class="loading">Loading…</div></div>
   </section>
-
   <section id="decisions">
-    <h2>Decision models</h2>
-    <p class="sub">Not chat models — they score candidate options and return calibrated probabilities in one pass. For classification, routing and agent decisions.</p>
+    <h2 data-s="dec_h"></h2><p class="sub" data-s="dec_s"></p>
     <div class="cards" id="decisionCards"><div class="loading">Loading…</div></div>
   </section>
-
   <section id="updates">
-    <h2>Updates</h2>
-    <p class="sub">Changelog — new findings, new models, and public corrections.</p>
+    <h2 data-s="upd_h"></h2><p class="sub" data-s="upd_s"></p>
     <div class="feed" id="feed"><div class="loading">Loading…</div></div>
   </section>
 </div>
 
-<footer><div class="wrap">
-  <p><strong>Local LLM Observatory</strong> — an independent, continuously updated reference. Not affiliated with any model vendor.</p>
-  <p>Speed labels: <span class="pill measured">measured</span> = real benchmark with linked source · <span class="pill estimated">estimated</span> = extrapolated, verify before trusting.</p>
-  <p>Data: <code>data/*.json</code> in this repo — contributions welcome.</p>
-</div></footer>
+<footer><div class="wrap" id="footBox"></div></footer>
 
 <script>
 const $=s=>document.querySelector(s);
-let DB={};
-function pill(t){return t==='measured'?'<span class="pill measured">measured</span>':t==='estimated'?'<span class="pill estimated">estimated</span>':'<span class="pill na">n/a</span>';}
+let DB={}, LANG=localStorage.getItem('llo-lang')||'en';
+const STR={
+en:{tabs:['Top Picks','Models','Uncensored','Engines','Decision Models','Updates'],
+picks_h:'Top picks for M1 Max 64GB',picks_s:'Ranked by the combination of model quality and real decode speed on this hardware. Target: 50–100 tok/s.',
+models_h:'Model catalog',models_s:'Quality figures are vendor/official benchmarks (MMLU-Pro where available). Speed is decode tok/s on M1 Max 64GB.',
+unc_h:'Uncensored tracker',unc_s:'Abliterated / uncensored variants per base model. Trust reflects account history and download counts, not an endorsement.',
+eng_h:'Inference engines',eng_s:'llama.cpp and its alternatives on Apple Silicon. Speed is Qwen3.8-27B-class decode unless noted.',
+dec_h:'Decision models',dec_s:'Not chat models — they score candidate options and return calibrated probabilities in one pass. For classification, routing and agent decisions.',
+upd_h:'Updates',upd_s:'Changelog — new findings, new models, and public corrections.',
+filters:['All','50+ tok/s','MoE','Has uncensored'],
+mhead:['Model','Params','Quality','Best quant (M1 Max)','Speed','Uncensored','Verdict'],
+uhead:['Base model','Variant repo','Format','Trust','Note'],
+method:'<strong>Methodology:</strong> every speed figure is labeled <span class="pill measured">measured</span> (real benchmark, source linked) or <span class="pill estimated">estimated</span> (extrapolated — treat with skepticism). We correct ourselves in public: see the updates feed for retractions.',
+foot:'<p><strong>Local LLM Observatory</strong> — an independent, continuously updated reference. Not affiliated with any model vendor.</p><p>Speed labels: <span class="pill measured">measured</span> = real benchmark with linked source · <span class="pill estimated">estimated</span> = extrapolated, verify before trusting.</p><p>Data: <code>data/*.json</code> in this repo — contributions welcome.</p>',
+loading:'Loading…',nodata:'No data yet.',updated:'Updated ',models_eng:'models',engines_w:'engines',latency:'Latency',size:'Size',api:'API',repo:'repo'},
+ko:{tabs:['추천 모델','모델 목록','무검열 모델','추론 엔진','디시전 모델','업데이트'],
+picks_h:'M1 Max 64GB 추천 모델',picks_s:'모델 품질과 실제 디코드 속도를 종합한 순위. 목표: 50–100 tok/s.',
+models_h:'모델 카탈로그',models_s:'품질 수치는 공식 벤치마크(MMLU-Pro 등). 속도는 M1 Max 64GB에서의 디코드 tok/s.',
+unc_h:'무검열 모델 트래커',unc_s:'베이스 모델별 abliterated/uncensored 변종. Trust는 계정 이력과 다운로드 기준이며 추천이 아님.',
+eng_h:'추론 엔진',eng_s:'llama.cpp와 Apple Silicon에서의 대안들. 속도는 별도 표기 없으면 Qwen3.8-27B급 디코드 기준.',
+dec_h:'디시전 모델',dec_s:'채팅용이 아님 — 후보 옵션을 점수화해 보정된 확률을 한 번의 패스로 반환. 분류·라우팅·에이전트 의사결정용.',
+upd_h:'업데이트',upd_s:'변경 로그 — 새 발견, 새 모델, 그리고 공개 정정.',
+filters:['전체','50+ tok/s','MoE','무검열 있음'],
+mhead:['모델','파라미터','품질','추천 양자화 (M1 Max)','속도','무검열','판정'],
+uhead:['베이스 모델','변종 repo','포맷','신뢰도','비고'],
+method:'<strong>방법론:</strong> 모든 속도 수치는 <span class="pill measured">measured</span>(실제 벤치마크, 출처 링크) 또는 <span class="pill estimated">estimated</span>(추정 — 검증 필요)로 표기합니다. 틀리면 공개적으로 정정합니다.',
+foot:'<p><strong>Local LLM Observatory</strong> — 독립적으로 지속 업데이트되는 레퍼런스. 특정 모델 벤더와 무관합니다.</p><p>속도 표기: <span class="pill measured">measured</span> = 출처 있는 실측 · <span class="pill estimated">estimated</span> = 추정, 신뢰 전 검증 필요.</p><p>데이터: 이 repo의 <code>data/*.json</code> — 기여 환영.</p>',
+loading:'불러오는 중…',nodata:'데이터 없음.',updated:'업데이트 ',models_eng:'개 모델',engines_w:'개 엔진',latency:'지연',size:'크기',api:'API',repo:'repo'}
+};
+function T(o,f){return (LANG==='ko'&&o&&(o[f+'_ko']!=null&&o[f+'_ko']!==''))?o[f+'_ko']:o?o[f]:'';}
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function pill(t){return t==='measured'?'<span class="pill measured">measured</span>':t==='estimated'?'<span class="pill estimated">estimated</span>':'<span class="pill na">n/a</span>';}
 function repoLink(r){return r?`<a href="https://huggingface.co/${esc(r)}" target="_blank" rel="noopener"><code>${esc(r)}</code></a>`:'—';}
-
+function applyI18n(){
+  const S=STR[LANG];
+  document.documentElement.lang=LANG==='ko'?'ko':'en';
+  document.title=LANG==='ko'?'Local LLM Observatory — Apple Silicon (한국어)':'Local LLM Observatory — Apple Silicon';
+  $('#langBtn').textContent=LANG==='ko'?'English':'한국어';
+  $('#tagline').textContent=T(DB.meta,'tagline')||'';
+  document.querySelectorAll('#tabBar button').forEach((b,i)=>b.textContent=S.tabs[i]);
+  ['picks','models','unc','eng','dec','upd'].forEach(k=>{document.querySelector(`[data-s="${k}_h"]`).textContent=S[k+'_h'];document.querySelector(`[data-s="${k}_s"]`).textContent=S[k+'_s'];});
+  $('#methodBox').innerHTML=S.method;$('#footBox').innerHTML=S.foot;
+  $('#modelFilters').innerHTML=S.filters.map((f,i)=>`<button data-f="${['all','fast','moe','uncensored'][i]}" class="${i===0?'active':''}">${f}</button>`).join('');
+  document.querySelectorAll('#modelFilters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#modelFilters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderModels(b.dataset.f);});
+  $('#modelHead').innerHTML=S.mhead.map(h=>`<th>${h}</th>`).join('');
+  $('#uncHead').innerHTML=S.uhead.map(h=>`<th>${h}</th>`).join('');
+  if(DB.meta){$('#updBadge').textContent=S.updated+(DB.meta.updated||'—');if(DB.meta.hardware_focus)$('#hwBadge').textContent=DB.meta.hardware_focus;}
+  const nm=(DB.models&&DB.models.models||[]).length,ne=(DB.engines&&DB.engines.engines||[]).length;
+  $('#cntBadge').textContent=LANG==='ko'?`${nm}${S.models_eng} · ${ne}${S.engines_w}`:`${nm} models · ${ne} engines`;
+  renderPicks();renderModels('all');renderUncensored();renderEngines();renderDecisions();renderFeed();
+}
+$('#langBtn').onclick=()=>{LANG=LANG==='ko'?'en':'ko';localStorage.setItem('llo-lang',LANG);applyI18n();};
 document.querySelectorAll('#tabBar button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('#tabBar button').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('section').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');document.getElementById(b.dataset.t).classList.add('active');
   window.scrollTo({top:0});
 });
-
 async function load(){
   const files=['meta','models','engines','decisions','updates'];
   for(const f of files){try{DB[f]=await(await fetch('data/'+f+'.json')).json();}catch(e){console.warn(f,e);DB[f]={};}}
-  if(DB.meta){$('#updBadge').textContent='Updated '+(DB.meta.updated||'—');
-    if(DB.meta.hardware_focus)$('#hwBadge').textContent=DB.meta.hardware_focus;}
-  const nm=(DB.models&&DB.models.models||[]).length, ne=(DB.engines&&DB.engines.engines||[]).length;
-  $('#cntBadge').textContent=`${nm} models · ${ne} engines`;
-  renderPicks();renderModels('all');renderUncensored();renderEngines();renderDecisions();renderFeed();
+  applyI18n();
 }
-function bestQuant(m){
-  if(!m.quants||!m.quants.length)return null;
-  return m.quants.slice().sort((a,b)=>(b.m1max_toks?1:0)-(a.m1max_toks?1:0))[0];
-}
+function bestQuant(m){if(!m.quants||!m.quants.length)return null;return m.quants.slice().sort((a,b)=>(b.m1max_toks?1:0)-(a.m1max_toks?1:0))[0];}
 function speedCell(q){
   if(!q||!q.m1max_toks)return '<span class="pill na">n/a</span>';
+  const src=T(q,'speed_source');
   return `<span class="speed">${esc(q.m1max_toks)} tok/s</span><br>${pill(q.speed_type)}`+
-    (q.speed_source?`<div class="src">${q.speed_source_url?`<a href="${esc(q.speed_source_url)}" target="_blank" rel="noopener">${esc(q.speed_source)}</a>`:esc(q.speed_source)}</div>`:'');
+    (src?`<div class="src">${q.speed_source_url?`<a href="${esc(q.speed_source_url)}" target="_blank" rel="noopener">${esc(src)}</a>`:esc(src)}</div>`:'');
 }
 function renderPicks(){
+  const S=STR[LANG];
   const ms=(DB.models.models||[]).filter(m=>m.rank).sort((a,b)=>a.rank-b.rank);
   $('#picksCards').innerHTML=ms.map(m=>{const q=bestQuant(m);return `<div class="card">
     <h3><span class="rank">#${m.rank}</span>${esc(m.name)}</h3>
     <div class="meta">${esc(m.params||'')} · ${esc(m.arch||'')} · ${esc(m.vendor||'')}</div>
     <div>${speedCell(q)}</div>
-    <div class="verdict">${esc(m.verdict||'')}</div></div>`;}).join('')||'<div class="loading">No data yet.</div>';
+    <div class="verdict">${esc(T(m,'verdict'))}</div></div>`;}).join('')||`<div class="loading">${S.nodata}</div>`;
 }
-let curFilter='all';
-document.querySelectorAll('#modelFilters button').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('#modelFilters button').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active');curFilter=b.dataset.f;renderModels(curFilter);
-});
 function renderModels(f){
+  const S=STR[LANG];
   let ms=DB.models.models||[];
   if(f==='fast')ms=ms.filter(m=>{const q=bestQuant(m);return q&&q.m1max_toks&&parseInt(q.m1max_toks)>=50;});
   if(f==='moe')ms=ms.filter(m=>(m.arch||'').toLowerCase().includes('moe'));
   if(f==='uncensored')ms=ms.filter(m=>m.uncensored&&m.uncensored.length);
-  $('#modelTable tbody').innerHTML=ms.map(m=>{const q=bestQuant(m);return `<tr>
+  $('#modelTable tbody').innerHTML=ms.map(m=>{const q=bestQuant(m);const qn=T(m.quality||{},'note');return `<tr>
     <td><strong>${esc(m.name)}</strong><br><span class="src">${esc(m.vendor||'')}</span></td>
     <td>${esc(m.params||'—')}<br><span class="src">${esc(m.arch||'')}</span></td>
-    <td>${m.quality&&m.quality.mmlu_pro?`<strong>${m.quality.mmlu_pro}</strong> <span class="src">MMLU-Pro</span>`:'—'}${m.quality&&m.quality.note?`<div class="src">${esc(m.quality.note)}</div>`:''}</td>
+    <td>${m.quality&&m.quality.mmlu_pro?`<strong>${m.quality.mmlu_pro}</strong> <span class="src">MMLU-Pro</span>`:'—'}${qn?`<div class="src">${esc(qn)}</div>`:''}</td>
     <td>${q?`${esc(q.format)}<br>${repoLink(q.repo)}<br><span class="src">${q.size_gb?q.size_gb+' GB':''}</span>`:'—'}</td>
     <td>${speedCell(q)}</td>
     <td>${m.uncensored&&m.uncensored.length?m.uncensored.map(u=>`<span class="pill trust-${u.trust||'medium'}">${esc(u.format||'')}</span>`).join(' '):'<span class="src">—</span>'}</td>
-    <td><span class="src">${esc(m.verdict||'')}</span></td></tr>`;}).join('');
+    <td><span class="src">${esc(T(m,'verdict'))}</span></td></tr>`;}).join('');
 }
 function renderUncensored(){
+  const S=STR[LANG];
   const rows=[];(DB.models.models||[]).forEach(m=>{(m.uncensored||[]).forEach(u=>rows.push({base:m.name,...u}));});
   $('#uncTable tbody').innerHTML=rows.map(r=>`<tr><td><strong>${esc(r.base)}</strong></td>
     <td>${repoLink(r.repo)}</td><td>${esc(r.format||'—')}</td>
     <td><span class="pill trust-${r.trust||'medium'}">${esc(r.trust||'medium')}</span></td>
-    <td><span class="src">${esc(r.note||'')}</span></td></tr>`).join('')||'<tr><td colspan="5" class="src">No data yet.</td></tr>';
+    <td><span class="src">${esc(T(r,'note'))}</span></td></tr>`).join('')||`<tr><td colspan="5" class="src">${S.nodata}</td></tr>`;
 }
 function renderEngines(){
-  $('#engineCards').innerHTML=(DB.engines.engines||[]).map(e=>`<div class="card">
+  const S=STR[LANG];
+  $('#engineCards').innerHTML=(DB.engines.engines||[]).map(e=>{const src=T(e,'speed_source');return `<div class="card">
     <h3>${esc(e.name)}</h3><div class="meta">${esc(e.type||'')} · backend: ${esc(e.backend||'—')} · speculative: ${esc(e.speculative||'—')}</div>
     <div>${e.m1max_toks?`<span class="speed">${esc(e.m1max_toks)} tok/s</span> ${pill(e.speed_type)}`:'<span class="pill na">n/a</span>'}
-    ${e.speed_source?`<div class="src">${e.speed_source_url?`<a href="${esc(e.speed_source_url)}" target="_blank" rel="noopener">${esc(e.speed_source)}</a>`:esc(e.speed_source)}</div>`:''}</div>
-    <div class="src" style="margin-top:8px">API: ${esc(e.api||'—')}${e.repo_url?` · <a href="${esc(e.repo_url)}" target="_blank" rel="noopener">repo</a>`:''}${e.install?`<br><code>${esc(e.install)}</code>`:''}</div>
-    <div class="verdict">${esc(e.verdict||'')}</div></div>`).join('')||'<div class="loading">No data yet.</div>';
+    ${src?`<div class="src">${e.speed_source_url?`<a href="${esc(e.speed_source_url)}" target="_blank" rel="noopener">${esc(src)}</a>`:esc(src)}</div>`:''}</div>
+    <div class="src" style="margin-top:8px">${S.api}: ${esc(e.api||'—')}${e.repo_url?` · <a href="${esc(e.repo_url)}" target="_blank" rel="noopener">${S.repo}</a>`:''}${e.install?`<br><code>${esc(e.install)}</code>`:''}</div>
+    <div class="verdict">${esc(T(e,'verdict'))}</div>
+    ${T(e,'notes')?`<div class="src" style="margin-top:6px">${esc(T(e,'notes'))}</div>`:''}</div>`;}).join('')||`<div class="loading">${S.nodata}</div>`;
 }
 function renderDecisions(){
+  const S=STR[LANG];
   $('#decisionCards').innerHTML=(DB.decisions.models||[]).map(d=>`<div class="card">
     <h3>${esc(d.name)}</h3><div class="meta">${esc(d.vendor||'')} · base: ${esc(d.base||'—')} · ${esc(d.license||'')}</div>
-    <div class="src">${esc(d.what||'')}</div>
-    <div style="margin-top:8px;font-size:13.5px">Latency: <strong>${esc(d.latency||'—')}</strong> · Size: <strong>${esc(d.size||'—')}</strong></div>
-    <div class="verdict">${esc(d.verdict||'')}</div></div>`).join('')||'<div class="loading">No data yet.</div>';
+    <div class="src">${esc(T(d,'what'))}</div>
+    <div style="margin-top:8px;font-size:13.5px">${S.latency}: <strong>${esc(d.latency||'—')}</strong> · ${S.size}: <strong>${esc(d.size||'—')}</strong></div>
+    <div class="verdict">${esc(T(d,'verdict'))}</div></div>`).join('')||`<div class="loading">${S.nodata}</div>`;
 }
 function renderFeed(){
+  const S=STR[LANG];
   $('#feed').innerHTML=(DB.updates.updates||[]).map(u=>`<div class="item">
     <span class="date">${esc(u.date||'')}</span><span class="kind ${esc(u.kind||'model')}">${esc(u.kind||'')}</span>
-    <h4>${esc(u.title||'')}</h4><p>${esc(u.body||'')}</p></div>`).join('')||'<div class="loading">No updates yet.</div>';
+    <h4>${esc(T(u,'title'))}</h4><p>${esc(T(u,'body'))}</p></div>`).join('')||`<div class="loading">${S.nodata}</div>`;
 }
 load();
 </script>

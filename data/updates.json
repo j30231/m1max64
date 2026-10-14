@@ -1,1 +1,68 @@
-{"updates":[{"body":"User-flagged model added as a formal candidate. Ternary-quantized Qwen3.8-27B (true 1.72 bits/weight): GGUF 5.95GB, MLX 8.60GB. Vendor claims 98.2% of FP16 retained across 20 benchmarks — no independent verification exists. M1 Max: 22-27 tok/s plain MLX (estimated from M3 Max 27.09 measured), 35-45 with MTPLX. Verdict: the size champion (6-9GB), not the speed champion — below the 50 tok/s target.","date":"2026-10-14","kind":"model","title":"Ternary-Bonsai-2-27B added to the candidate list"},{"body":"The 65-80 tok/s M1 Max figure was a bandwidth-proportional estimate from M3 Ultra. Real M1 Max data: 27.7 tok/s at 2K context (shunya1810/apple-silicon-llm-bench, v0.3.5.1) and a same-harness bench showing the DFlash2 drafter slows things down on M1 Max (JamesTervit). On M1 Max's 400GB/s the drafter's bandwidth cost exceeds its savings. Corrected range: 20-28 tok/s measured — TensorFold loses to MTPLX on this chip.","date":"2026-10-14","kind":"correction","title":"TensorFold M1 Max speed corrected: 65-80 (estimate) -> 20-28 (measured)"},{"body":"The 80-95 tok/s figure was an upward extrapolation from M3 Max-class measurements. Direct M1 Max 64GB measurements: oMLX 53.3, Rapid-MLX 59.9, mlx_lm.server 61.2 tok/s (saschpe/local-llm-bench). The 50 tok/s target floor is still met, but with no headroom. Rank #1 stands.","date":"2026-10-14","kind":"correction","title":"Qwen3.6-35B-A3B M1 Max speed corrected: 80-95 (estimate) -> 50-62 (measured)"},{"body":"AutoTrust Labs' decision model built on Qwen3.5-35B-A3B: activates ~3B params per token, scores up to 256 text/image options in one forward pass with calibrated probabilities, ~204ms median latency. Decision Index 0.3: 59.73. NVFP4 25.6GB fits a single 32-48GB GPU. Apache-2.0. Closest match to the classification-criteria-optimized LLM the user was looking for.","date":"2026-10-14","kind":"model","title":"JEV-35B discovered (AutoTrust Labs decision model)"},{"body":"jundot's native macOS inference server (22.7k stars): MLX backend, OpenAI/Anthropic-compatible API, continuous batching, paged SSD KV cache that survives restarts (33.9k-token cold start 100.9s -> 4.21s). M1 Max 64GB measured 57.8 tok/s on Qwen3.6-35B-A3B. Recommended as the server upgrade path for agent workloads. Install: brew tap jundot/omlx.","date":"2026-10-14","kind":"engine","title":"oMLX discovered (native macOS server)"},{"body":"Five-thread parallel survey plus TensorFold integration complete. Key findings: the model choice decides speed more than the engine (35B-A3B does 50-60 on any MLX engine); MLX wins decode 1.1-1.6x but llama.cpp wins prefill 1.7-2.2x (run both for RAG); Strata excluded (Mac engine rejects 35B-A3B); Ollama 0.40.3+ is MLX-by-default and worth re-evaluating. Final picks: LM Studio (now), oMLX (server), MTPLX+Youssofal (speed, verify first).","date":"2026-10-14","kind":"engine","title":"llama.cpp-alternative engine comparison completed"},{"body":"hokar3361's llama.cpp fork (Metal kernel patches + MTP speculative tuning): 226.9 tok/s on Qwen3.6-35B-A3B (UD-Q4_K_XL) measured on M4 Max 64GB. M1 Max estimate 150-165 tok/s via bandwidth scaling — unverified, and kernels are M4 Max-tuned (author warns other chips may misbehave). 3-day-old repo. Experimental track only.","date":"2026-10-14","kind":"engine","title":"moe-on-a-desk fork discovered (experimental speed track)"},{"body":"Liquid AI's 24B MoE (2B active), agent/tool-call specialized: vendor claims IFEval 96.75, AutomationBench 27.69, ToolSandbox 80.71; knowledge/coding weaker (GPQA 74.42, SWE-bench 51.00). Official MLX-4bit exists but is very early. M1 Max 120-140 tok/s estimated (unverified). Watch-list candidate for agent workloads.","date":"2026-10-14","kind":"model","title":"LFM2.5-24B-A2B discovered (Liquid AI agent MoE)"}]}
+{
+  "updates": [
+    {
+      "body": "User-flagged model added as a formal candidate. Ternary-quantized Qwen3.8-27B (true 1.72 bits/weight): GGUF 5.95GB, MLX 8.60GB. Vendor claims 98.2% of FP16 retained across 20 benchmarks — no independent verification exists. M1 Max: 22-27 tok/s plain MLX (estimated from M3 Max 27.09 measured), 35-45 with MTPLX. Verdict: the size champion (6-9GB), not the speed champion — below the 50 tok/s target.",
+      "date": "2026-10-14",
+      "kind": "model",
+      "title": "Ternary-Bonsai-2-27B added to the candidate list",
+      "title_ko": "Ternary-Bonsai-2-27B 후보 목록에 추가",
+      "body_ko": "사용자 지목으로 정식 후보에 추가. Ternary 양자화 Qwen3.8-27B (진짜 1.72 bits/weight): GGUF 5.95GB, MLX 8.60GB. 벤더는 20개 벤치에서 FP16의 98.2% 유지 주장 — 독립 검증 없음. M1 Max: plain MLX 22-27 tok/s (M3 Max 27.09 실측에서 추정), MTPLX 적용 시 35-45. 판정: 속도 챔피언이 아닌 크기 챔피언 (6-9GB) — 50 tok/s 목표 미달."
+    },
+    {
+      "body": "The 65-80 tok/s M1 Max figure was a bandwidth-proportional estimate from M3 Ultra. Real M1 Max data: 27.7 tok/s at 2K context (shunya1810/apple-silicon-llm-bench, v0.3.5.1) and a same-harness bench showing the DFlash2 drafter slows things down on M1 Max (JamesTervit). On M1 Max's 400GB/s the drafter's bandwidth cost exceeds its savings. Corrected range: 20-28 tok/s measured — TensorFold loses to MTPLX on this chip.",
+      "date": "2026-10-14",
+      "kind": "correction",
+      "title": "TensorFold M1 Max speed corrected: 65-80 (estimate) -> 20-28 (measured)",
+      "title_ko": "TensorFold M1 Max 속도 정정: 65-80 (추정) → 20-28 (실측)",
+      "body_ko": "65-80 tok/s M1 Max 수치는 M3 Ultra에서의 대역폭 비례 추정치였음. 실제 M1 Max 데이터: 2K 컨텍스트에서 27.7 tok/s (shunya1810/apple-silicon-llm-bench, v0.3.5.1), 동일 하네스 벤치에서 DFlash2 drafter가 M1 Max에서 감속 유발 (JamesTervit). M1 Max 400GB/s에서는 drafter의 대역폭 비용이 절감분을 초과. 정정 범위: 실측 20-28 tok/s — 이 칩에서는 TensorFold가 MTPLX에 밀림."
+    },
+    {
+      "body": "The 80-95 tok/s figure was an upward extrapolation from M3 Max-class measurements. Direct M1 Max 64GB measurements: oMLX 53.3, Rapid-MLX 59.9, mlx_lm.server 61.2 tok/s (saschpe/local-llm-bench). The 50 tok/s target floor is still met, but with no headroom. Rank #1 stands.",
+      "date": "2026-10-14",
+      "kind": "correction",
+      "title": "Qwen3.6-35B-A3B M1 Max speed corrected: 80-95 (estimate) -> 50-62 (measured)",
+      "title_ko": "Qwen3.6-35B-A3B M1 Max 속도 정정: 80-95 (추정) → 50-62 (실측)",
+      "body_ko": "80-95 tok/s 수치는 M3 Max급 측정에서의 상향 외삽이었음. M1 Max 64GB 직접 측정: oMLX 53.3, Rapid-MLX 59.9, mlx_lm.server 61.2 tok/s (saschpe/local-llm-bench). 50 tok/s 목표 하한은 여전히 충족, 여유는 없음. 1순위 유지."
+    },
+    {
+      "body": "AutoTrust Labs' decision model built on Qwen3.5-35B-A3B: activates ~3B params per token, scores up to 256 text/image options in one forward pass with calibrated probabilities, ~204ms median latency. Decision Index 0.3: 59.73. NVFP4 25.6GB fits a single 32-48GB GPU. Apache-2.0. Closest match to the classification-criteria-optimized LLM the user was looking for.",
+      "date": "2026-10-14",
+      "kind": "model",
+      "title": "JEV-35B discovered (AutoTrust Labs decision model)",
+      "title_ko": "JEV-35B 발견 (AutoTrust Labs decision 모델)",
+      "body_ko": "AutoTrust Labs의 Qwen3.5-35B-A3B 기반 decision 모델: 토큰당 약 3B 파라미터 활성화, 한 번의 forward pass로 최대 256개 텍스트/이미지 옵션을 보정된 확률로 스코어링, 중간값 약 204ms 지연. Decision Index 0.3: 59.73. NVFP4 25.6GB로 단일 32-48GB GPU에 탑재. Apache-2.0. 사용자가 찾던 분류기준 최적화 LLM에 가장 근접."
+    },
+    {
+      "body": "jundot's native macOS inference server (22.7k stars): MLX backend, OpenAI/Anthropic-compatible API, continuous batching, paged SSD KV cache that survives restarts (33.9k-token cold start 100.9s -> 4.21s). M1 Max 64GB measured 57.8 tok/s on Qwen3.6-35B-A3B. Recommended as the server upgrade path for agent workloads. Install: brew tap jundot/omlx.",
+      "date": "2026-10-14",
+      "kind": "engine",
+      "title": "oMLX discovered (native macOS server)",
+      "title_ko": "oMLX 발견 (네이티브 macOS 서버)",
+      "body_ko": "jundot의 네이티브 macOS 추론 서버 (22.7k 스타): MLX 백엔드, OpenAI/Anthropic 호환 API, continuous batching, 재시작해도 유지되는 paged SSD KV 캐시 (33.9k 토큰 cold start 100.9초 → 4.21초). M1 Max 64GB에서 Qwen3.6-35B-A3B 57.8 tok/s 실측. 에이전트 워크로드용 서버 업그레이드 경로로 추천. 설치: brew tap jundot/omlx."
+    },
+    {
+      "body": "Five-thread parallel survey plus TensorFold integration complete. Key findings: the model choice decides speed more than the engine (35B-A3B does 50-60 on any MLX engine); MLX wins decode 1.1-1.6x but llama.cpp wins prefill 1.7-2.2x (run both for RAG); Strata excluded (Mac engine rejects 35B-A3B); Ollama 0.40.3+ is MLX-by-default and worth re-evaluating. Final picks: LM Studio (now), oMLX (server), MTPLX+Youssofal (speed, verify first).",
+      "date": "2026-10-14",
+      "kind": "engine",
+      "title": "llama.cpp-alternative engine comparison completed",
+      "title_ko": "llama.cpp 대체 엔진 비교 완료",
+      "body_ko": "5스레드 병렬 조사 + TensorFold 통합 완료. 핵심 발견: 엔진보다 모델 선택이 속도를 결정 (35B-A3B는 어떤 MLX 엔진에서도 50-60); decode는 MLX가 1.1-1.6배 빠르지만 prefill은 llama.cpp가 1.7-2.2배 빠름 (RAG용으로 둘 다 운용); Strata 제외 (Mac 엔진이 35B-A3B 거부); Ollama 0.40.3+는 MLX 기본이라 재평가 가치. 최종 선택: LM Studio (지금), oMLX (서버), MTPLX+Youssofal (속도, 먼저 검증)."
+    },
+    {
+      "body": "hokar3361's llama.cpp fork (Metal kernel patches + MTP speculative tuning): 226.9 tok/s on Qwen3.6-35B-A3B (UD-Q4_K_XL) measured on M4 Max 64GB. M1 Max estimate 150-165 tok/s via bandwidth scaling — unverified, and kernels are M4 Max-tuned (author warns other chips may misbehave). 3-day-old repo. Experimental track only.",
+      "date": "2026-10-14",
+      "kind": "engine",
+      "title": "moe-on-a-desk fork discovered (experimental speed track)",
+      "title_ko": "moe-on-a-desk 포크 발견 (실험 속도 트랙)",
+      "body_ko": "hokar3361의 llama.cpp 포크 (Metal 커널 패치 + MTP speculative 튜닝): M4 Max 64GB에서 Qwen3.6-35B-A3B (UD-Q4_K_XL) 226.9 tok/s 실측. M1 Max 추정 150-165 tok/s (대역폭 환산) — 미검증, 커널이 M4 Max 튜닝이라 다른 칩에서 오동작 가능 (작성자 경고). 3일 된 repo. 실험 트랙 전용."
+    },
+    {
+      "body": "Liquid AI's 24B MoE (2B active), agent/tool-call specialized: vendor claims IFEval 96.75, AutomationBench 27.69, ToolSandbox 80.71; knowledge/coding weaker (GPQA 74.42, SWE-bench 51.00). Official MLX-4bit exists but is very early. M1 Max 120-140 tok/s estimated (unverified). Watch-list candidate for agent workloads.",
+      "date": "2026-10-14",
+      "kind": "model",
+      "title": "LFM2.5-24B-A2B discovered (Liquid AI agent MoE)",
+      "title_ko": "LFM2.5-24B-A2B 발견 (Liquid AI 에이전트 MoE)",
+      "body_ko": "Liquid AI의 24B MoE (2B active), 에이전트/툴 호출 특화: 벤더 주장 IFEval 96.75, AutomationBench 27.69, ToolSandbox 80.71; 지식/코딩은 약함 (GPQA 74.42, SWE-bench 51.00). 공식 MLX-4bit 존재하나 매우 초기. M1 Max 120-140 tok/s 추정 (미검증). 에이전트 워크로드용 관망 후보."
+    }
+  ]
+}
