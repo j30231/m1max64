@@ -148,12 +148,12 @@ uhead:['Base model','Variant repo','Format','Trust','Note'],
 method:'<strong>Methodology:</strong> every speed figure is labeled <span class="pill measured">measured</span> (real benchmark, source linked) or <span class="pill estimated">estimated</span> (extrapolated — treat with skepticism). We correct ourselves in public: see the updates feed for retractions.',
 foot:'<p><strong>Local LLM Observatory</strong> — an independent, continuously updated reference. Not affiliated with any model vendor.</p><p>Speed labels: <span class="pill measured">measured</span> = real benchmark with linked source · <span class="pill estimated">estimated</span> = extrapolated, verify before trusting.</p><p>Data: <code>data/*.json</code> in this repo — contributions welcome.</p>',
 loading:'Loading…',nodata:'No data yet.',updated:'Updated ',models_eng:'models',engines_w:'engines',latency:'Latency',size:'Size',api:'API',repo:'repo'},
-ko:{tabs:['추천 모델','모델 목록','무검열 모델','추론 엔진','디시전 모델','업데이트'],
+ko:{tabs:['추천 모델','모델 목록','무검열 모델','추론 엔진','Decision Models','업데이트'],
 picks_h:'M1 Max 64GB 추천 모델',picks_s:'모델 품질과 실제 디코드 속도를 종합한 순위. 목표: 50–100 tok/s.',
 models_h:'모델 카탈로그',models_s:'품질 수치는 공식 벤치마크(MMLU-Pro 등). 속도는 M1 Max 64GB에서의 디코드 tok/s.',
 unc_h:'무검열 모델 트래커',unc_s:'베이스 모델별 abliterated/uncensored 변종. Trust는 계정 이력과 다운로드 기준이며 추천이 아님.',
 eng_h:'추론 엔진',eng_s:'llama.cpp와 Apple Silicon에서의 대안들. 속도는 별도 표기 없으면 Qwen3.8-27B급 디코드 기준.',
-dec_h:'디시전 모델',dec_s:'채팅용이 아님 — 후보 옵션을 점수화해 보정된 확률을 한 번의 패스로 반환. 분류·라우팅·에이전트 의사결정용.',
+dec_h:'Decision Models',dec_s:'Not chat models — they score candidate options and return calibrated probabilities in one pass. For classification, routing and agent decisions.',
 upd_h:'업데이트',upd_s:'변경 로그 — 새 발견, 새 모델, 그리고 공개 정정.',
 filters:['전체','50+ tok/s','MoE','무검열 있음'],
 mhead:['모델','파라미터','품질','추천 양자화 (M1 Max)','속도','무검열','판정'],
@@ -198,7 +198,7 @@ document.querySelectorAll('#tabBar button').forEach(b=>b.onclick=()=>{
 });
 async function load(){
   const files=['meta','models','engines','decisions','updates'];
-  for(const f of files){try{DB[f]=await(await fetch('data/'+f+'.json')).json();}catch(e){console.warn(f,e);DB[f]={};}}
+  for(const f of files){try{DB[f]=await(await fetch('data/'+f+'.json',{cache:'no-store'})).json();}catch(e){console.warn(f,e);DB[f]={};}}
   applyI18n();
 }
 function bestQuant(m){if(!m.quants||!m.quants.length)return null;return m.quants.slice().sort((a,b)=>(b.m1max_toks?1:0)-(a.m1max_toks?1:0))[0];}
