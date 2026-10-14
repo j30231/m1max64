@@ -107,23 +107,23 @@
       "quants": [
         {
           "format": "MLX 4-bit",
-          "m1max_toks": "70-90",
-          "repo": "lmstudio-community/Qwen3.5-9B-MLX-4bit",
+          "repo": null,
           "size_gb": 6.0,
-          "speed_source": "101 tok/s on M3 Ultra (rapid-mlx), bandwidth-scaled",
-          "speed_source_url": null,
+          "m1max_toks": "25-45",
           "speed_type": "estimated",
-          "speed_source_ko": "M3 Ultra 101 tok/s (rapid-mlx) 기준 대역폭 환산"
+          "speed_source": "No M1 Max 64GB measurement as of 2026-10-14; neighbors: M4 24GB 21.3 tok/s plain / 28.8 w/ MTP (Skulk), M5 Max 31.09 baseline (dflash-mlx). Hybrid GatedDeltaNet decodes slower than a pure transformer (ekryski).",
+          "speed_source_url": "https://github.com/foxlight-foundation/skulk/blob/HEAD/website/docs/speculative-decoding.md",
+          "speed_source_ko": "2026-10-14 기준 M1 Max 64GB 측정값 없음; 인접 모델: M4 24GB 21.3 tok/s plain / 28.8 w/ MTP (Skulk), M5 Max 31.09 baseline (dflash-mlx). Hybrid GatedDeltaNet은 순수 transformer보다 decode 속도가 느림 (ekryski)."
         },
         {
-          "format": "MLX 4-bit",
-          "m1max_toks": "70-90",
-          "repo": "mlx-community/Qwen3.5-9B-4bit",
-          "size_gb": 6.0,
-          "speed_source": "Same basis as above",
-          "speed_source_url": null,
+          "format": "GGUF (Ollama)",
+          "repo": "qwen/qwen3.5-9b",
+          "size_gb": null,
+          "m1max_toks": "26-30",
           "speed_type": "estimated",
-          "speed_source_ko": "위와 동일한 근거"
+          "speed_source": "mac-bench 26.2 tok/s median; 6-workload sweep 29.77 avg (Apple Silicon, chip unstated)",
+          "speed_source_url": "https://github.com/araa47/mac-bench/blob/HEAD/docs/latest.md",
+          "speed_source_ko": "mac-bench 26.2 tok/s median; 6-workload sweep 29.77 avg (Apple Silicon, 칩 미명시)"
         }
       ],
       "rank": 2,
@@ -179,14 +179,44 @@
       },
       "quants": [
         {
-          "format": "MLX 4-bit",
-          "m1max_toks": "70-90",
+          "format": "MLX 4-bit (recent stack)",
           "repo": null,
           "size_gb": null,
-          "speed_source": "~106 tok/s decode on Apple Silicon, chip unmarked (unverified)",
-          "speed_source_url": null,
-          "speed_type": "estimated",
-          "speed_source_ko": "Apple Silicon에서 decode 약 106 tok/s, 칩 미표기 (미검증)"
+          "m1max_toks": "71-76",
+          "speed_type": "measured",
+          "speed_source": "scratchy 71.8 / mlx-lm 75.9 / ollama 71.0 tok/s on M1 Max (2026-10-11, conc-16 scaling)",
+          "speed_source_url": "https://github.com/ai-native-systems-research/scratchy/commit/4fd0d3b3a0a56cfa5ab5fb5197040f4656aba12c",
+          "speed_source_ko": "M1 Max에서 scratchy 71.8 / mlx-lm 75.9 / ollama 71.0 tok/s (2026-10-11, conc-16 scaling)"
+        },
+        {
+          "format": "MLX 4-bit (older stack)",
+          "repo": null,
+          "size_gb": null,
+          "m1max_toks": "27",
+          "speed_type": "measured",
+          "speed_source": "mlx-swift-lm 27 tok/s baseline on M1 Max 64GB (QA-requote workload; +25% with PLD n=3)",
+          "speed_source_url": "https://github.com/ekryski/mlx-swift-lm/blob/HEAD/papers/speculative-decoding-on-apple-silicon.md",
+          "speed_source_ko": "mlx-swift-lm, M1 Max 64GB에서 27 tok/s 기준 (QA-requote 워크로드; PLD n=3 적용 시 +25%)"
+        },
+        {
+          "format": "GGUF UD-Q4_K_XL (llama.cpp Metal)",
+          "repo": null,
+          "size_gb": 16.0,
+          "m1max_toks": "40-58",
+          "speed_type": "measured",
+          "speed_source": "ikyle.me: gen 58.2 tok/s (pp 298) on M1 Max 64GB; pchalasani: tg 40 tok/s (pp 395) on M1 Max",
+          "speed_source_url": "https://ikyle.me/blog/2026/how-to-setup-a-local-coding-agent-on-macos",
+          "speed_source_ko": "ikyle.me: gen 58.2 tok/s (pp 298) on M1 Max 64GB; pchalasani: tg 40 tok/s (pp 395) on M1 Max"
+        },
+        {
+          "format": "GGUF Q4_K_M",
+          "repo": null,
+          "size_gb": 15.6,
+          "m1max_toks": "35.7-51",
+          "speed_type": "measured",
+          "speed_source": "willitrunai 35.7 tok/s (M1 Max 64GB); hypura SparseMoeMmap 51 tok/s (M1 Max 32GB)",
+          "speed_source_url": "https://willitrunai.com/best-local-llm-for/m1-max-64gb",
+          "speed_source_ko": "willitrunai 35.7 tok/s (M1 Max 64GB); hypura SparseMoeMmap 51 tok/s (M1 Max 32GB)"
         }
       ],
       "rank": 3,
@@ -204,8 +234,8 @@
         }
       ],
       "vendor": "Google",
-      "verdict": "Quality and speed on par with the Qwen MoEs, but MLX ecosystem is thinner and speed claims lack chip attribution.",
-      "verdict_ko": "Qwen MoE와 품질·속도 동급이지만, MLX 생태계가 얇고 속도 주장에 칩 표기가 없음."
+      "verdict": "Quality on par with Qwen MoEs (MMLU-Pro 82.6, GPQA 82.3). M1 Max measured: 27-76 tok/s MLX (stack-dependent) and 40-58 tok/s llama.cpp Q4. MLX ecosystem thinner than Qwen.",
+      "verdict_ko": "Qwen MoE들과 동등한 품질 (MMLU-Pro 82.6, GPQA 82.3). M1 Max 측정: 27-76 tok/s MLX (스택 의존적) 및 40-58 tok/s llama.cpp Q4. MLX 생태계는 Qwen보다 얇음."
     },
     {
       "arch": "MoE",
@@ -274,13 +304,13 @@
       "quants": [
         {
           "format": "MLX 4-bit",
-          "m1max_toks": "65-85",
           "repo": "mlx-community/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-4bit",
           "size_gb": null,
-          "speed_source": "87-112 tok/s on M4 Pro (mlx-dspark), bandwidth-scaled",
-          "speed_source_url": null,
+          "m1max_toks": "60-100",
           "speed_type": "estimated",
-          "speed_source_ko": "M4 Pro 87-112 tok/s (mlx-dspark) 기준 대역폭 환산"
+          "speed_source": "No M1 Max measurement as of 2026-10-14; neighbors: M5 Pro 48GB 105 tok/s stock mlx-lm, M3 Ultra 168.41 median, M4 Pro 87-112 (mlx-dspark). M1 Max lands below (bandwidth-bound).",
+          "speed_source_url": "https://github.com/sevren-ai/mlx-heimr-sparse-down",
+          "speed_source_ko": "2026-10-14 기준 M1 Max 측정값 없음; 인접 모델: M5 Pro 48GB 105 tok/s stock mlx-lm, M3 Ultra 168.41 중간값, M4 Pro 87-112 (mlx-dspark). M1 Max는 이보다 낮음 (대역폭 제한)."
         }
       ],
       "rank": 5,

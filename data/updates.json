@@ -3,6 +3,14 @@
     {
       "date": "2026-10-14",
       "kind": "discovery",
+      "title": "Gemma 4 26B-A4B M1 Max measured data in; Qwen3.5-9B / Nemotron estimates corrected down",
+      "body": "Gemma 4 26B-A4B quants replaced with M1 Max measurements: MLX 4-bit 71-76 tok/s (recent stack, 2026-10) and 27 tok/s (older stack), llama.cpp UD-Q4_K_XL 40-58, Q4_K_M 35.7-51. Old 70-90 estimate (chip-unmarked 106 claim) was too optimistic. Qwen3.5-9B: no M1 Max datapoint exists; corrected to 25-45 estimated from neighboring chips (M4 24GB 21.3, M5 Max 31.09) — the old 101/M3-Ultra figure was a misread (B=4 aggregate). Nemotron-3.5-Lightning: no M1 Max datapoint; 60-100 estimated from M5 Pro 105 / M3 Ultra 168 neighbors.",
+      "title_ko": "Gemma 4 26B-A4B M1 Max 실측 데이터 추가; Qwen3.5-9B / Nemotron 추정치 하향 조정",
+      "body_ko": "Gemma 4 26B-A4B 퀀트가 M1 Max 측정값으로 교체됨: MLX 4-bit 71-76 tok/s (최신 스택, 2026-10) 및 27 tok/s (구형 스택), llama.cpp UD-Q4_K_XL 40-58, Q4_K_M 35.7-51. 기존 70-90 추정치(칩 미표기 106 주장)는 지나치게 낙관적이었음. Qwen3.5-9B: M1 Max 데이터포인트 없음; 인접 칩(M4 24GB 21.3, M5 Max 31.09) 기반 25-45로 수정 — 기존 101/M3-Ultra 수치는 오독(B=4 집계)이었음. Nemotron-3.5-Lightning: M1 Max 데이터포인트 없음; M5 Pro 105 / M3 Ultra 168 인접 칩 기반 60-100 추정."
+    },
+    {
+      "date": "2026-10-14",
+      "kind": "discovery",
       "title": "Ternary-Bonsai-2-27B M1 Max measured data in; Qwen3.6-35B-A3B hits 145.3 tok/s on Splash",
       "body": "Bonsai 2 quants replaced with real M1 Max 64GB measurements: Splash speculative 27.6 tok/s (npanj bench) and 49-58 tok/s (short prompts), oMLX + prism-hadamard 18.1 tok/s warm. Removed the old MTPLX 35-45 estimate (MTPLX README cites 64.4 tok/s with no hardware listed; boxabirds notes Bonsai 2 lacks MTP heads). Bonus: Qwen3.6-35B-A3B via Splash speculative hits 145.3 tok/s decode on M1 Max 64GB (incoai/Qwen3.6-35B-A3B-Splash). LFM2.5-24B-A2B and MiniCPM-V-4.7-35B-A3B still have zero community Apple Silicon measurements.",
       "title_ko": "Ternary-Bonsai-2-27B M1 Max 측정 데이터 공개; Qwen3.6-35B-A3B, Splash에서 145.3 tok/s 기록",
