@@ -163,8 +163,13 @@ foot:'<p><strong>Local LLM Observatory</strong> — 독립적으로 지속 업�
 loading:'불러오는 중…',nodata:'데이터 없음.',updated:'업데이트 ',models_eng:'개 모델',engines_w:'개 엔진',latency:'지연',size:'크기',api:'API',repo:'repo'}
 };
 function T(o,f){return (LANG==='ko'&&o&&(o[f+'_ko']!=null&&o[f+'_ko']!==''))?o[f+'_ko']:o?o[f]:'';}
+const LBL={trust:{high:{en:'high',ko:'높음'},medium:{en:'medium',ko:'보통'},low:{en:'low',ko:'낮음'}},
+kind:{model:{en:'model',ko:'모델'},engine:{en:'engine',ko:'엔진'},correction:{en:'correction',ko:'정정'},discovery:{en:'discovery',ko:'발견'}},
+stype:{measured:{en:'measured',ko:'실측'},estimated:{en:'estimated',ko:'추정'}},
+etype:{server:{en:'server',ko:'서버'},engine:{en:'engine',ko:'엔진'},app:{en:'app',ko:'앱'},cluster:{en:'cluster',ko:'클러스터'},library:{en:'library',ko:'라이브러리'}}};
+function L(cat,v){const e=(LBL[cat]||{})[v];return e?e[LANG]||e.en:v;}
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
-function pill(t){return t==='measured'?'<span class="pill measured">measured</span>':t==='estimated'?'<span class="pill estimated">estimated</span>':'<span class="pill na">n/a</span>';}
+function pill(t){const lbl=L('stype',t);return t==='measured'?`<span class="pill measured">${lbl}</span>`:t==='estimated'?`<span class="pill estimated">${lbl}</span>`:'<span class="pill na">n/a</span>';}
 function repoLink(r){return r?`<a href="https://huggingface.co/${esc(r)}" target="_blank" rel="noopener"><code>${esc(r)}</code></a>`:'—';}
 function applyI18n(){
   const S=STR[LANG];
@@ -232,13 +237,13 @@ function renderUncensored(){
   const rows=[];(DB.models.models||[]).forEach(m=>{(m.uncensored||[]).forEach(u=>rows.push({base:m.name,...u}));});
   $('#uncTable tbody').innerHTML=rows.map(r=>`<tr><td><strong>${esc(r.base)}</strong></td>
     <td>${repoLink(r.repo)}</td><td>${esc(r.format||'—')}</td>
-    <td><span class="pill trust-${r.trust||'medium'}">${esc(r.trust||'medium')}</span></td>
+    <td><span class="pill trust-${r.trust||'medium'}">${esc(L('trust',r.trust||'medium'))}</span></td>
     <td><span class="src">${esc(T(r,'note'))}</span></td></tr>`).join('')||`<tr><td colspan="5" class="src">${S.nodata}</td></tr>`;
 }
 function renderEngines(){
   const S=STR[LANG];
   $('#engineCards').innerHTML=(DB.engines.engines||[]).map(e=>{const src=T(e,'speed_source');return `<div class="card">
-    <h3>${esc(e.name)}</h3><div class="meta">${esc(e.type||'')} · backend: ${esc(e.backend||'—')} · speculative: ${esc(e.speculative||'—')}</div>
+    <h3>${esc(e.name)}</h3><div class="meta">${esc(L('etype',e.type||''))} · backend: ${esc(e.backend||'—')} · speculative: ${esc(e.speculative||'—')}</div>
     <div>${e.m1max_toks?`<span class="speed">${esc(e.m1max_toks)} tok/s</span> ${pill(e.speed_type)}`:'<span class="pill na">n/a</span>'}
     ${src?`<div class="src">${e.speed_source_url?`<a href="${esc(e.speed_source_url)}" target="_blank" rel="noopener">${esc(src)}</a>`:esc(src)}</div>`:''}</div>
     <div class="src" style="margin-top:8px">${S.api}: ${esc(e.api||'—')}${e.repo_url?` · <a href="${esc(e.repo_url)}" target="_blank" rel="noopener">${S.repo}</a>`:''}${e.install?`<br><code>${esc(e.install)}</code>`:''}</div>
@@ -256,7 +261,7 @@ function renderDecisions(){
 function renderFeed(){
   const S=STR[LANG];
   $('#feed').innerHTML=(DB.updates.updates||[]).map(u=>`<div class="item">
-    <span class="date">${esc(u.date||'')}</span><span class="kind ${esc(u.kind||'model')}">${esc(u.kind||'')}</span>
+    <span class="date">${esc(u.date||'')}</span><span class="kind ${esc(u.kind||'model')}">${esc(L('kind',u.kind||'model'))}</span>
     <h4>${esc(T(u,'title'))}</h4><p>${esc(T(u,'body'))}</p></div>`).join('')||`<div class="loading">${S.nodata}</div>`;
 }
 load();
