@@ -3,6 +3,14 @@
     {
       "date": "2026-10-15",
       "kind": "engine",
+      "title": "VRAMCalculator adds Mac sizing for Strata (M1-M6, 60 Macs)",
+      "title_ko": "VRAMCalculator에 Strata용 Mac 사이징 추가 (M1-M6, 60개 Mac)",
+      "body": "VRAMCalculator 0.4 pre-beta added a Strata Mac tab (M1 to M6, 60 Apple Silicon Macs): per-build verdicts on whether Qwen3.8 Flash Next stays in memory or experts stream from SSD. Author-side checks were done on a 128GB M5 Max and a 32GB M4 mini; VRAMCalculator did not test on a Mac. This is a sizing calculator, not new speed data.",
+      "body_ko": "VRAMCalculator 0.4 pre‑beta에 Strata Mac 탭(M1~M6, 60대 Apple Silicon Mac)이 추가되었습니다: Qwen3.8 Flash Next가 메모리에 유지되는지 아니면 전문가가 SSD에서 스트리밍되는지에 대한 빌드별 판정입니다. 작성자 측 검사는 128GB M5 Max와 32GB M4 mini에서 수행했으며, VRAMCalculator는 Mac에서 테스트하지 않았습니다. 이는 새로운 속도 데이터가 아니라 용량 계산기입니다."
+    },
+    {
+      "date": "2026-10-15",
+      "kind": "engine",
       "title": "oMLX 0.7.1.dev2: Splash as external engine for Qwen3.8/Qwen3.6",
       "title_ko": "oMLX 0.7.1.dev2: Qwen3.8/Qwen3.6에 대한 외부 엔진으로 Splash.",
       "body": "jundot released oMLX 0.7.1.dev2 (2026-10-15): Splash now serves Qwen3.8 and Qwen3.6 via DFlash2 as an external engine, enabled per model in Model Settings > Advanced. Vendor claims +11% decode on GLM-5.3-Flash (85.5->95.3 tok/s, M5 Ultra 64K) and +82-157% on 4 concurrent requests (M3 Ultra). All new numbers are M5/M3 Ultra vendor-reported, not M1 Max measured; kept separate from the site's M1 Max data.",
