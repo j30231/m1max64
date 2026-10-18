@@ -68,9 +68,9 @@
           "size_gb": null,
           "m1max_toks": "145.3",
           "speed_type": "measured",
-          "speed_source": "Splash 1.1.0-m1 speculative decode 145.3 tok/s on M1 Max 64GB",
+          "speed_source": "Splash 1.1.0-m1 speculative decode 145.3 tok/s on M1 Max 64GB — paperniuk's unofficial M1/M2 port (npanj bench); official Inco Splash supports M3+ only",
           "speed_source_url": "https://github.com/paperniuk/splash/releases/tag/1.1.0-m1",
-          "speed_source_ko": "Splash 1.1.0-m1 speculative decode 145.3 tok/s (M1 Max 64GB)"
+          "speed_source_ko": "Splash 1.1.0-m1 speculative decode 145.3 tok/s (M1 Max 64GB)— paperniuk의 비공식 M1/M2 port (npanj bench); 공식 Inco Splash는 M3+만 지원"
         },
         {
           "format": "UD-MLX 3-bit (TurboQuant)",
@@ -451,6 +451,16 @@
           "speed_source": "Ollama Q4_K_M ~14.0 tok/s on Mac Studio M3 Ultra 256GB; llama.cpp crawls at 1.5-3.3 tok/s on Apple Silicon (hybrid arch) — engine choice dominates, not M1 Max",
           "speed_source_url": "https://viralpique.com/run-qwen3-8-27b-locally-real-numbers-from-my-mac-studio/",
           "speed_source_ko": "Ollama Q4_K_M ~14.0 tok/s (Mac Studio M3 Ultra 256GB); llama.cpp은 Apple Silicon(하이브리드 아키텍처)에서 1.5~3.3 tok/s로 기어감 — 엔진 선택이 주도적, M1 Max가 아님"
+        },
+        {
+          "format": "Splash speculative (splash-m1 port)",
+          "repo": "incoai/Qwen3.8-27B-Splash",
+          "size_gb": null,
+          "m1max_toks": "38.1",
+          "speed_type": "measured",
+          "speed_source": "paperniuk/splash 1.1.0-m1 release notes (npanj 5-prompt bench, decode tok/s, M1 Max 64GB): 38.1 tok/s — unofficial M1/M2 port of Inco Splash (official supports M3+)",
+          "speed_source_ko": "paperniuk/splash 1.1.0-m1 릴리스 노트 (npanj 5-prompt bench, decode tok/s, M1 Max 64GB): 38.1 tok/s — Inco Splash의 비공식 M1/M2 포트 (공식은 M3+ 지원)",
+          "speed_source_url": "https://github.com/paperniuk/splash/releases/tag/1.1.0-m1"
         }
       ],
       "rank": null,

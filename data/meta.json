@@ -3,7 +3,7 @@
   "methodology_note": "Speed figures are decode tok/s on the focus hardware. speed_type 'measured' = published measurement with chip and runtime named (source linked). speed_type 'estimated' = bandwidth-proportional extrapolation or cross-chip inference, unverified. When in doubt, a figure is marked 'estimated'. Quality figures (MMLU-Pro) are vendor-reported unless noted; null means unpublished or unverified.",
   "site_name": "Local LLM Observatory",
   "tagline": "Which local model, which quant, which engine — on an M1 Max 64GB. Continuously updated.",
-  "updated": "2026-10-15",
+  "updated": "2026-10-18",
   "tagline_ko": "어떤 로컬 모델, 어떤 양자화, 어떤 엔진인가 — M1 Max 64GB 기준. 지속적으로 업데이트됩니다.",
   "methodology_note_ko": "속도 수치는 기준 하드웨어에서의 decode tok/s입니다. speed_type 'measured'는 칩과 런타임을 명시한 공개 측정치(출처 링크), 'estimated'는 대역폭 비례 외삽 또는 칩 간 추정치로 미검증입니다. 애매하면 'estimated'로 표기합니다. 품질 수치(MMLU-Pro)는 별도 표시가 없으면 벤더 발표이며, null은 미공개 또는 미검증입니다."
 }

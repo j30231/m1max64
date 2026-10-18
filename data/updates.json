@@ -1,6 +1,14 @@
 {
   "updates": [
     {
+      "date": "2026-10-18",
+      "kind": "engine",
+      "title": "Splash M1/M2 port (paperniuk): M1 Max 64GB numbers confirmed",
+      "title_ko": "Splash M1/M2 포트 (paperniuk): M1 Max 64GB 수치 확인 완료",
+      "body": "paperniuk/splash 1.1.0-m1 is an unofficial M1/M2 port of Inco's Splash (official supports M3+ only). Its release notes carry npanj's 5-prompt decode benchmark on M1 Max 64GB: Qwen3.6-35B-A3B-Splash 145.3 tok/s, Qwen3.8-27B-Splash 38.1 tok/s. Added the 38.1 row as measured; clarified the 145.3 row's provenance.",
+      "body_ko": "paperniuk/splash 1.1.0-m1은 Inco의 Splash를 M1/M2용으로 포팅한 비공식 버전입니다 (공식 버전은 M3+만 지원). 해당 release notes에는 M1 Max 64GB에서"
+    },
+    {
       "date": "2026-10-15",
       "kind": "engine",
       "title": "VRAMCalculator adds Mac sizing for Strata (M1-M6, 60 Macs)",
