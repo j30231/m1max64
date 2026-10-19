@@ -1,124 +1,140 @@
 {
-  "updates": [
-    {
-      "date": "2026-10-18",
-      "kind": "engine",
-      "title": "Splash M1/M2 port (paperniuk): M1 Max 64GB numbers confirmed",
-      "title_ko": "Splash M1/M2 포트 (paperniuk): M1 Max 64GB 수치 확인 완료",
-      "body": "paperniuk/splash 1.1.0-m1 is an unofficial M1/M2 port of Inco's Splash (official supports M3+ only). Its release notes carry npanj's 5-prompt decode benchmark on M1 Max 64GB: Qwen3.6-35B-A3B-Splash 145.3 tok/s, Qwen3.8-27B-Splash 38.1 tok/s. Added the 38.1 row as measured; clarified the 145.3 row's provenance.",
-      "body_ko": "paperniuk/splash 1.1.0-m1은 Inco의 Splash를 M1/M2용으로 포팅한 비공식 버전입니다 (공식 버전은 M3+만 지원). 해당 release notes에는 M1 Max 64GB에서"
-    },
-    {
-      "date": "2026-10-15",
-      "kind": "engine",
-      "title": "VRAMCalculator adds Mac sizing for Strata (M1-M6, 60 Macs)",
-      "title_ko": "VRAMCalculator에 Strata용 Mac 사이징 추가 (M1-M6, 60개 Mac)",
-      "body": "VRAMCalculator 0.4 pre-beta added a Strata Mac tab (M1 to M6, 60 Apple Silicon Macs): per-build verdicts on whether Qwen3.8 Flash Next stays in memory or experts stream from SSD. Author-side checks were done on a 128GB M5 Max and a 32GB M4 mini; VRAMCalculator did not test on a Mac. This is a sizing calculator, not new speed data.",
-      "body_ko": "VRAMCalculator 0.4 pre‑beta에 Strata Mac 탭(M1~M6, 60대 Apple Silicon Mac)이 추가되었습니다: Qwen3.8 Flash Next가 메모리에 유지되는지 아니면 전문가가 SSD에서 스트리밍되는지에 대한 빌드별 판정입니다. 작성자 측 검사는 128GB M5 Max와 32GB M4 mini에서 수행했으며, VRAMCalculator는 Mac에서 테스트하지 않았습니다. 이는 새로운 속도 데이터가 아니라 용량 계산기입니다."
-    },
-    {
-      "date": "2026-10-15",
-      "kind": "engine",
-      "title": "oMLX 0.7.1.dev2: Splash as external engine for Qwen3.8/Qwen3.6",
-      "title_ko": "oMLX 0.7.1.dev2: Qwen3.8/Qwen3.6에 대한 외부 엔진으로 Splash.",
-      "body": "jundot released oMLX 0.7.1.dev2 (2026-10-15): Splash now serves Qwen3.8 and Qwen3.6 via DFlash2 as an external engine, enabled per model in Model Settings > Advanced. Vendor claims +11% decode on GLM-5.3-Flash (85.5->95.3 tok/s, M5 Ultra 64K) and +82-157% on 4 concurrent requests (M3 Ultra). All new numbers are M5/M3 Ultra vendor-reported, not M1 Max measured; kept separate from the site's M1 Max data.",
-      "body_ko": "jundot이 oMLX 0.7.1.dev2 (2026-10-15)를 출시했습니다: Splash은 이제 외부 엔진인 DFlash2를 통해 Qwen3.8 및 Qwen3.6을 제공하며, Model Settings > Advanced에서 모델별로 활성화할 수 있습니다. 벤더는 GLM-5.3-Flash에서 decode 속도가 +11% 증가했다고 주장합니다(85.5→95.3 tok/s, M5 Ultra 64K) 그리고 4개의 동시 요청에서는 +82‑157% 향상했다고 합니다(M3 Ultra). 모든 새로운 수치는 M5/M3 Ultra 벤더가 보고한 것이며, M1 Max에서 측정한 것이 아니라 사이트의 M1 Max 데이터와는 별도로 유지됩니다."
-    },
-    {
-      "date": "2026-10-15",
-      "kind": "model",
-      "title": "Uncensored LFM2.5-24B-A2B released by AtomicChat",
-      "title_ko": "AtomicChat이 Uncensored LFM2.5-24B-A2B를 출시했습니다.",
-      "body": "AtomicChat released AtomicChat/LFM2.5-24B-A2B-Uncensored-GGUF (2026-10-09): abliterated GGUF quants IQ3_M through Q8_0. Vendor claims refusal rate cut from 96% to 1% and MMLU accuracy up from 64.4% to 65.6% (self-reported via X @atomic_chat_hq, 2026-10-14). Added to the uncensored tracker.",
-      "body_ko": "AtomicChat은 AtomicChat/LFM2.5-24B-A2B-Uncensored-GGUF(2026-10-09)를 출시했습니다: abliterated GGUF 퀀트 IQ3_M부터 Q8_0까지. 벤더는 거부율을 96%에서 1%로 낮추고 MMLU 정확도를 64.4%에서 65.6%로 올렸다고 주장합니다(2026-10-14 X @atomic_chat_hq를 통한 자체 보고). 해당 모델이 uncensored 트래커에 추가되었습니다."
-    },
-    {
-      "date": "2026-10-14",
-      "kind": "discovery",
-      "title": "Qwen3.8-27B MTPLX 38.9 tok/s M1 Max measured; Qwen3.6-35B-A3B + gpt-oss-20b new data points",
-      "body": "Qwen3.8-27B: added the missing MTPLX 38.932 tok/s median on M1 Max 64GB (measured, Takuyan-labs) — replaces the old M4-Max-scaled 30-40 estimate. Reference rows: oMLX+MTP 55.1/71.7 on M4 Max, llama.cpp Q4_K_M ~14 on M3 Ultra (engine choice dominates on the hybrid arch). Notable gap: no plain-MLX M1 Max number beyond 15-18. Qwen3.6-35B-A3B: three new M1 Max 32GB rows — TurboQuant 3-bit 58.4, speculative 88, Ollama ~27 (all measured). gpt-oss-20b: soft ~60 (M1 Max 32GB, DavidAU abliterated GGUF), M4 Max MXFP4 100.2, M3 Ultra llama.cpp 116. Quality notes now carry vendor-reported scores labeled as such.",
-      "title_ko": "Qwen3.8-27B MTPLX 38.9 tok/s M1 Max 측정; Qwen3.6-35B-A3B + gpt-oss-20b 새로운 data points",
-      "body_ko": "Qwen3.8-27B: M1 Max 64GB에서 누락되었던 MTPLX 38.932 tok/s 중간값 추가 (실측, Takuyan-labs) — 기존 M4 Max 스케일링 추정치 30-40 대체. 참조 행: oMLX+MTP 55.1/71.7(M4 Max), llama.cpp Q4_K_M ~14(M3 Ultra, 엔진 선택이 하이브리드 아키에서 지배적). 눈에 띄는 격차: 15-18을 넘는 plain-MLX M1 Max 수치 없음. Qwen3.6-35B-A3B: M1 Max 32GB 신규 3개 행 — TurboQuant 3-bit 58.4, speculative 88, Ollama ~27 (모두 실측). gpt-oss-20b: 소프트 ~60(M1 Max 32GB, DavidAU abliterated GGUF), M4 Max MXFP4 100.2, M3 Ultra llama.cpp 116. 품질 메모에 벤더 보고 점수를 라벨링하여 표시."
-    },
-    {
-      "date": "2026-10-14",
-      "kind": "discovery",
-      "title": "Gemma 4 26B-A4B M1 Max measured data in; Qwen3.5-9B / Nemotron estimates corrected down",
-      "body": "Gemma 4 26B-A4B quants replaced with M1 Max measurements: MLX 4-bit 71-76 tok/s (recent stack, 2026-10) and 27 tok/s (older stack), llama.cpp UD-Q4_K_XL 40-58, Q4_K_M 35.7-51. Old 70-90 estimate (chip-unmarked 106 claim) was too optimistic. Qwen3.5-9B: no M1 Max datapoint exists; corrected to 25-45 estimated from neighboring chips (M4 24GB 21.3, M5 Max 31.09) — the old 101/M3-Ultra figure was a misread (B=4 aggregate). Nemotron-3.5-Lightning: no M1 Max datapoint; 60-100 estimated from M5 Pro 105 / M3 Ultra 168 neighbors.",
-      "title_ko": "Gemma 4 26B-A4B M1 Max 실측 데이터 추가; Qwen3.5-9B / Nemotron 추정치 하향 조정",
-      "body_ko": "Gemma 4 26B-A4B 퀀트가 M1 Max 측정값으로 교체됨: MLX 4-bit 71-76 tok/s (최신 스택, 2026-10) 및 27 tok/s (구형 스택), llama.cpp UD-Q4_K_XL 40-58, Q4_K_M 35.7-51. 기존 70-90 추정치(칩 미표기 106 주장)는 지나치게 낙관적이었음. Qwen3.5-9B: M1 Max 데이터포인트 없음; 인접 칩(M4 24GB 21.3, M5 Max 31.09) 기반 25-45로 수정 — 기존 101/M3-Ultra 수치는 오독(B=4 집계)이었음. Nemotron-3.5-Lightning: M1 Max 데이터포인트 없음; M5 Pro 105 / M3 Ultra 168 인접 칩 기반 60-100 추정."
-    },
-    {
-      "date": "2026-10-14",
-      "kind": "discovery",
-      "title": "Ternary-Bonsai-2-27B M1 Max measured data in; Qwen3.6-35B-A3B hits 145.3 tok/s on Splash",
-      "body": "Bonsai 2 quants replaced with real M1 Max 64GB measurements: Splash speculative 27.6 tok/s (npanj bench) and 49-58 tok/s (short prompts), oMLX + prism-hadamard 18.1 tok/s warm. Removed the old MTPLX 35-45 estimate (MTPLX README cites 64.4 tok/s with no hardware listed; boxabirds notes Bonsai 2 lacks MTP heads). Bonus: Qwen3.6-35B-A3B via Splash speculative hits 145.3 tok/s decode on M1 Max 64GB (incoai/Qwen3.6-35B-A3B-Splash). LFM2.5-24B-A2B and MiniCPM-V-4.7-35B-A3B still have zero community Apple Silicon measurements.",
-      "title_ko": "Ternary-Bonsai-2-27B M1 Max 측정 데이터 공개; Qwen3.6-35B-A3B, Splash에서 145.3 tok/s 기록",
-      "body_ko": "Bonsai 2 정량화 데이터가 실제 M1 Max 64GB 측정값으로 교체됨: Splash speculative 27.6 tok/s (npanj 벤치) 및 49-58 tok/s (짧은 프롬프트), oMLX + prism-hadamard 18.1 tok/s warm. 기존 MTPLX 35-45 추정치 제거 (MTPLX README는 하드웨어 미기재 상태에서 64.4 tok/s 인용; boxabirds에 따르면 Bonsai 2에는 MTP 헤드 없음). 보너스: Qwen3.6-35B-A3B가 Splash speculative로 M1 Max 64GB에서 145.3 tok/s decode 달성 (incoai/Qwen3.6-35B-A3B-Splash). LFM2.5-24B-A2B와 MiniCPM-V-4.7-35B-A3B는 여전히 커뮤니티 Apple Silicon 측정값이 없음."
-    },
-    {
-      "body": "User-flagged model added as a formal candidate. Ternary-quantized Qwen3.8-27B (true 1.72 bits/weight): GGUF 5.95GB, MLX 8.60GB. Vendor claims 98.2% of FP16 retained across 20 benchmarks — no independent verification exists. M1 Max: 22-27 tok/s plain MLX (estimated from M3 Max 27.09 measured), 35-45 with MTPLX. Verdict: the size champion (6-9GB), not the speed champion — below the 50 tok/s target.",
-      "date": "2026-10-14",
-      "kind": "model",
-      "title": "Ternary-Bonsai-2-27B added to the candidate list",
-      "title_ko": "Ternary-Bonsai-2-27B 후보 목록에 추가",
-      "body_ko": "사용자 지목으로 정식 후보에 추가. Ternary 양자화 Qwen3.8-27B (진짜 1.72 bits/weight): GGUF 5.95GB, MLX 8.60GB. 벤더는 20개 벤치에서 FP16의 98.2% 유지 주장 — 독립 검증 없음. M1 Max: plain MLX 22-27 tok/s (M3 Max 27.09 실측에서 추정), MTPLX 적용 시 35-45. 판정: 속도 챔피언이 아닌 크기 챔피언 (6-9GB) — 50 tok/s 목표 미달."
-    },
-    {
-      "body": "The 65-80 tok/s M1 Max figure was a bandwidth-proportional estimate from M3 Ultra. Real M1 Max data: 27.7 tok/s at 2K context (shunya1810/apple-silicon-llm-bench, v0.3.5.1) and a same-harness bench showing the DFlash2 drafter slows things down on M1 Max (JamesTervit). On M1 Max's 400GB/s the drafter's bandwidth cost exceeds its savings. Corrected range: 20-28 tok/s measured — TensorFold loses to MTPLX on this chip.",
-      "date": "2026-10-14",
-      "kind": "correction",
-      "title": "TensorFold M1 Max speed corrected: 65-80 (estimate) -> 20-28 (measured)",
-      "title_ko": "TensorFold M1 Max 속도 정정: 65-80 (추정) → 20-28 (실측)",
-      "body_ko": "65-80 tok/s M1 Max 수치는 M3 Ultra에서의 대역폭 비례 추정치였음. 실제 M1 Max 데이터: 2K 컨텍스트에서 27.7 tok/s (shunya1810/apple-silicon-llm-bench, v0.3.5.1), 동일 하네스 벤치에서 DFlash2 drafter가 M1 Max에서 감속 유발 (JamesTervit). M1 Max 400GB/s에서는 drafter의 대역폭 비용이 절감분을 초과. 정정 범위: 실측 20-28 tok/s — 이 칩에서는 TensorFold가 MTPLX에 밀림."
-    },
-    {
-      "body": "The 80-95 tok/s figure was an upward extrapolation from M3 Max-class measurements. Direct M1 Max 64GB measurements: oMLX 53.3, Rapid-MLX 59.9, mlx_lm.server 61.2 tok/s (saschpe/local-llm-bench). The 50 tok/s target floor is still met, but with no headroom. Rank #1 stands.",
-      "date": "2026-10-14",
-      "kind": "correction",
-      "title": "Qwen3.6-35B-A3B M1 Max speed corrected: 80-95 (estimate) -> 50-62 (measured)",
-      "title_ko": "Qwen3.6-35B-A3B M1 Max 속도 정정: 80-95 (추정) → 50-62 (실측)",
-      "body_ko": "80-95 tok/s 수치는 M3 Max급 측정에서의 상향 외삽이었음. M1 Max 64GB 직접 측정: oMLX 53.3, Rapid-MLX 59.9, mlx_lm.server 61.2 tok/s (saschpe/local-llm-bench). 50 tok/s 목표 하한은 여전히 충족, 여유는 없음. 1순위 유지."
-    },
-    {
-      "body": "AutoTrust Labs' decision model built on Qwen3.5-35B-A3B: activates ~3B params per token, scores up to 256 text/image options in one forward pass with calibrated probabilities, ~204ms median latency. Decision Index 0.3: 59.73. NVFP4 25.6GB fits a single 32-48GB GPU. Apache-2.0. Closest match to the classification-criteria-optimized LLM the user was looking for.",
-      "date": "2026-10-14",
-      "kind": "model",
-      "title": "JEV-35B discovered (AutoTrust Labs decision model)",
-      "title_ko": "JEV-35B 발견 (AutoTrust Labs decision 모델)",
-      "body_ko": "AutoTrust Labs의 Qwen3.5-35B-A3B 기반 decision 모델: 토큰당 약 3B 파라미터 활성화, 한 번의 forward pass로 최대 256개 텍스트/이미지 옵션을 보정된 확률로 스코어링, 중간값 약 204ms 지연. Decision Index 0.3: 59.73. NVFP4 25.6GB로 단일 32-48GB GPU에 탑재. Apache-2.0. 사용자가 찾던 분류기준 최적화 LLM에 가장 근접."
-    },
-    {
-      "body": "jundot's native macOS inference server (22.7k stars): MLX backend, OpenAI/Anthropic-compatible API, continuous batching, paged SSD KV cache that survives restarts (33.9k-token cold start 100.9s -> 4.21s). M1 Max 64GB measured 57.8 tok/s on Qwen3.6-35B-A3B. Recommended as the server upgrade path for agent workloads. Install: brew tap jundot/omlx.",
-      "date": "2026-10-14",
-      "kind": "engine",
-      "title": "oMLX discovered (native macOS server)",
-      "title_ko": "oMLX 발견 (네이티브 macOS 서버)",
-      "body_ko": "jundot의 네이티브 macOS 추론 서버 (22.7k 스타): MLX 백엔드, OpenAI/Anthropic 호환 API, continuous batching, 재시작해도 유지되는 paged SSD KV 캐시 (33.9k 토큰 cold start 100.9초 → 4.21초). M1 Max 64GB에서 Qwen3.6-35B-A3B 57.8 tok/s 실측. 에이전트 워크로드용 서버 업그레이드 경로로 추천. 설치: brew tap jundot/omlx."
-    },
-    {
-      "body": "Five-thread parallel survey plus TensorFold integration complete. Key findings: the model choice decides speed more than the engine (35B-A3B does 50-60 on any MLX engine); MLX wins decode 1.1-1.6x but llama.cpp wins prefill 1.7-2.2x (run both for RAG); Strata excluded (Mac engine rejects 35B-A3B); Ollama 0.40.3+ is MLX-by-default and worth re-evaluating. Final picks: LM Studio (now), oMLX (server), MTPLX+Youssofal (speed, verify first).",
-      "date": "2026-10-14",
-      "kind": "engine",
-      "title": "llama.cpp-alternative engine comparison completed",
-      "title_ko": "llama.cpp 대체 엔진 비교 완료",
-      "body_ko": "5스레드 병렬 조사 + TensorFold 통합 완료. 핵심 발견: 엔진보다 모델 선택이 속도를 결정 (35B-A3B는 어떤 MLX 엔진에서도 50-60); decode는 MLX가 1.1-1.6배 빠르지만 prefill은 llama.cpp가 1.7-2.2배 빠름 (RAG용으로 둘 다 운용); Strata 제외 (Mac 엔진이 35B-A3B 거부); Ollama 0.40.3+는 MLX 기본이라 재평가 가치. 최종 선택: LM Studio (지금), oMLX (서버), MTPLX+Youssofal (속도, 먼저 검증)."
-    },
-    {
-      "body": "hokar3361's llama.cpp fork (Metal kernel patches + MTP speculative tuning): 226.9 tok/s on Qwen3.6-35B-A3B (UD-Q4_K_XL) measured on M4 Max 64GB. M1 Max estimate 150-165 tok/s via bandwidth scaling — unverified, and kernels are M4 Max-tuned (author warns other chips may misbehave). 3-day-old repo. Experimental track only.",
-      "date": "2026-10-14",
-      "kind": "engine",
-      "title": "moe-on-a-desk fork discovered (experimental speed track)",
-      "title_ko": "moe-on-a-desk 포크 발견 (실험 속도 트랙)",
-      "body_ko": "hokar3361의 llama.cpp 포크 (Metal 커널 패치 + MTP speculative 튜닝): M4 Max 64GB에서 Qwen3.6-35B-A3B (UD-Q4_K_XL) 226.9 tok/s 실측. M1 Max 추정 150-165 tok/s (대역폭 환산) — 미검증, 커널이 M4 Max 튜닝이라 다른 칩에서 오동작 가능 (작성자 경고). 3일 된 repo. 실험 트랙 전용."
-    },
-    {
-      "body": "Liquid AI's 24B MoE (2B active), agent/tool-call specialized: vendor claims IFEval 96.75, AutomationBench 27.69, ToolSandbox 80.71; knowledge/coding weaker (GPQA 74.42, SWE-bench 51.00). Official MLX-4bit exists but is very early. M1 Max 120-140 tok/s estimated (unverified). Watch-list candidate for agent workloads.",
-      "date": "2026-10-14",
-      "kind": "model",
-      "title": "LFM2.5-24B-A2B discovered (Liquid AI agent MoE)",
-      "title_ko": "LFM2.5-24B-A2B 발견 (Liquid AI 에이전트 MoE)",
-      "body_ko": "Liquid AI의 24B MoE (2B active), 에이전트/툴 호출 특화: 벤더 주장 IFEval 96.75, AutomationBench 27.69, ToolSandbox 80.71; 지식/코딩은 약함 (GPQA 74.42, SWE-bench 51.00). 공식 MLX-4bit 존재하나 매우 초기. M1 Max 120-140 tok/s 추정 (미검증). 에이전트 워크로드용 관망 후보."
-    }
-  ]
+ "updates": [
+  {
+   "date": "2026-10-18",
+   "kind": "engine",
+   "title": "Splash M1/M2 port (paperniuk): M1 Max 64GB numbers confirmed",
+   "title_ko": "Splash M1/M2 포트 (paperniuk): M1 Max 64GB 수치 확인 완료",
+   "body": "paperniuk/splash 1.1.0-m1 is an unofficial M1/M2 port of Inco's Splash (official supports M3+ only). Its release notes carry npanj's 5-prompt decode benchmark on M1 Max 64GB: Qwen3.6-35B-A3B-Splash 145.3 tok/s, Qwen3.8-27B-Splash 38.1 tok/s. Added the 38.1 row as measured; clarified the 145.3 row's provenance.",
+   "body_ko": "paperniuk/splash 1.1.0-m1은 Inco의 Splash를 M1/M2용으로 포팅한 비공식 버전입니다 (공식 버전은 M3+만 지원). 해당 release notes에는 M1 Max 64GB에서"
+  },
+  {
+   "date": "2026-10-15",
+   "kind": "engine",
+   "title": "VRAMCalculator adds Mac sizing for Strata (M1-M6, 60 Macs)",
+   "title_ko": "VRAMCalculator에 Strata용 Mac 사이징 추가 (M1-M6, 60개 Mac)",
+   "body": "VRAMCalculator 0.4 pre-beta added a Strata Mac tab (M1 to M6, 60 Apple Silicon Macs): per-build verdicts on whether Qwen3.8 Flash Next stays in memory or experts stream from SSD. Author-side checks were done on a 128GB M5 Max and a 32GB M4 mini; VRAMCalculator did not test on a Mac. This is a sizing calculator, not new speed data.",
+   "body_ko": "VRAMCalculator 0.4 pre‑beta에 Strata Mac 탭(M1~M6, 60대 Apple Silicon Mac)이 추가되었습니다: Qwen3.8 Flash Next가 메모리에 유지되는지 아니면 전문가가 SSD에서 스트리밍되는지에 대한 빌드별 판정입니다. 작성자 측 검사는 128GB M5 Max와 32GB M4 mini에서 수행했으며, VRAMCalculator는 Mac에서 테스트하지 않았습니다. 이는 새로운 속도 데이터가 아니라 용량 계산기입니다."
+  },
+  {
+   "date": "2026-10-15",
+   "kind": "engine",
+   "title": "oMLX 0.7.1.dev2: Splash as external engine for Qwen3.8/Qwen3.6",
+   "title_ko": "oMLX 0.7.1.dev2: Qwen3.8/Qwen3.6에 대한 외부 엔진으로 Splash.",
+   "body": "jundot released oMLX 0.7.1.dev2 (2026-10-15): Splash now serves Qwen3.8 and Qwen3.6 via DFlash2 as an external engine, enabled per model in Model Settings > Advanced. Vendor claims +11% decode on GLM-5.3-Flash (85.5->95.3 tok/s, M5 Ultra 64K) and +82-157% on 4 concurrent requests (M3 Ultra). All new numbers are M5/M3 Ultra vendor-reported, not M1 Max measured; kept separate from the site's M1 Max data.",
+   "body_ko": "jundot이 oMLX 0.7.1.dev2 (2026-10-15)를 출시했습니다: Splash은 이제 외부 엔진인 DFlash2를 통해 Qwen3.8 및 Qwen3.6을 제공하며, Model Settings > Advanced에서 모델별로 활성화할 수 있습니다. 벤더는 GLM-5.3-Flash에서 decode 속도가 +11% 증가했다고 주장합니다(85.5→95.3 tok/s, M5 Ultra 64K) 그리고 4개의 동시 요청에서는 +82‑157% 향상했다고 합니다(M3 Ultra). 모든 새로운 수치는 M5/M3 Ultra 벤더가 보고한 것이며, M1 Max에서 측정한 것이 아니라 사이트의 M1 Max 데이터와는 별도로 유지됩니다."
+  },
+  {
+   "date": "2026-10-15",
+   "kind": "model",
+   "title": "Uncensored LFM2.5-24B-A2B released by AtomicChat",
+   "title_ko": "AtomicChat이 Uncensored LFM2.5-24B-A2B를 출시했습니다.",
+   "body": "AtomicChat released AtomicChat/LFM2.5-24B-A2B-Uncensored-GGUF (2026-10-09): abliterated GGUF quants IQ3_M through Q8_0. Vendor claims refusal rate cut from 96% to 1% and MMLU accuracy up from 64.4% to 65.6% (self-reported via X @atomic_chat_hq, 2026-10-14). Added to the uncensored tracker.",
+   "body_ko": "AtomicChat은 AtomicChat/LFM2.5-24B-A2B-Uncensored-GGUF(2026-10-09)를 출시했습니다: abliterated GGUF 퀀트 IQ3_M부터 Q8_0까지. 벤더는 거부율을 96%에서 1%로 낮추고 MMLU 정확도를 64.4%에서 65.6%로 올렸다고 주장합니다(2026-10-14 X @atomic_chat_hq를 통한 자체 보고). 해당 모델이 uncensored 트래커에 추가되었습니다."
+  },
+  {
+   "date": "2026-10-14",
+   "kind": "discovery",
+   "title": "Qwen3.8-27B MTPLX 38.9 tok/s M1 Max measured; Qwen3.6-35B-A3B + gpt-oss-20b new data points",
+   "body": "Qwen3.8-27B: added the missing MTPLX 38.932 tok/s median on M1 Max 64GB (measured, Takuyan-labs) — replaces the old M4-Max-scaled 30-40 estimate. Reference rows: oMLX+MTP 55.1/71.7 on M4 Max, llama.cpp Q4_K_M ~14 on M3 Ultra (engine choice dominates on the hybrid arch). Notable gap: no plain-MLX M1 Max number beyond 15-18. Qwen3.6-35B-A3B: three new M1 Max 32GB rows — TurboQuant 3-bit 58.4, speculative 88, Ollama ~27 (all measured). gpt-oss-20b: soft ~60 (M1 Max 32GB, DavidAU abliterated GGUF), M4 Max MXFP4 100.2, M3 Ultra llama.cpp 116. Quality notes now carry vendor-reported scores labeled as such.",
+   "title_ko": "Qwen3.8-27B MTPLX 38.9 tok/s M1 Max 측정; Qwen3.6-35B-A3B + gpt-oss-20b 새로운 data points",
+   "body_ko": "Qwen3.8-27B: M1 Max 64GB에서 누락되었던 MTPLX 38.932 tok/s 중간값 추가 (실측, Takuyan-labs) — 기존 M4 Max 스케일링 추정치 30-40 대체. 참조 행: oMLX+MTP 55.1/71.7(M4 Max), llama.cpp Q4_K_M ~14(M3 Ultra, 엔진 선택이 하이브리드 아키에서 지배적). 눈에 띄는 격차: 15-18을 넘는 plain-MLX M1 Max 수치 없음. Qwen3.6-35B-A3B: M1 Max 32GB 신규 3개 행 — TurboQuant 3-bit 58.4, speculative 88, Ollama ~27 (모두 실측). gpt-oss-20b: 소프트 ~60(M1 Max 32GB, DavidAU abliterated GGUF), M4 Max MXFP4 100.2, M3 Ultra llama.cpp 116. 품질 메모에 벤더 보고 점수를 라벨링하여 표시."
+  },
+  {
+   "date": "2026-10-14",
+   "kind": "discovery",
+   "title": "Gemma 4 26B-A4B M1 Max measured data in; Qwen3.5-9B / Nemotron estimates corrected down",
+   "body": "Gemma 4 26B-A4B quants replaced with M1 Max measurements: MLX 4-bit 71-76 tok/s (recent stack, 2026-10) and 27 tok/s (older stack), llama.cpp UD-Q4_K_XL 40-58, Q4_K_M 35.7-51. Old 70-90 estimate (chip-unmarked 106 claim) was too optimistic. Qwen3.5-9B: no M1 Max datapoint exists; corrected to 25-45 estimated from neighboring chips (M4 24GB 21.3, M5 Max 31.09) — the old 101/M3-Ultra figure was a misread (B=4 aggregate). Nemotron-3.5-Lightning: no M1 Max datapoint; 60-100 estimated from M5 Pro 105 / M3 Ultra 168 neighbors.",
+   "title_ko": "Gemma 4 26B-A4B M1 Max 실측 데이터 추가; Qwen3.5-9B / Nemotron 추정치 하향 조정",
+   "body_ko": "Gemma 4 26B-A4B 퀀트가 M1 Max 측정값으로 교체됨: MLX 4-bit 71-76 tok/s (최신 스택, 2026-10) 및 27 tok/s (구형 스택), llama.cpp UD-Q4_K_XL 40-58, Q4_K_M 35.7-51. 기존 70-90 추정치(칩 미표기 106 주장)는 지나치게 낙관적이었음. Qwen3.5-9B: M1 Max 데이터포인트 없음; 인접 칩(M4 24GB 21.3, M5 Max 31.09) 기반 25-45로 수정 — 기존 101/M3-Ultra 수치는 오독(B=4 집계)이었음. Nemotron-3.5-Lightning: M1 Max 데이터포인트 없음; M5 Pro 105 / M3 Ultra 168 인접 칩 기반 60-100 추정."
+  },
+  {
+   "date": "2026-10-14",
+   "kind": "discovery",
+   "title": "Ternary-Bonsai-2-27B M1 Max measured data in; Qwen3.6-35B-A3B hits 145.3 tok/s on Splash",
+   "body": "Bonsai 2 quants replaced with real M1 Max 64GB measurements: Splash speculative 27.6 tok/s (npanj bench) and 49-58 tok/s (short prompts), oMLX + prism-hadamard 18.1 tok/s warm. Removed the old MTPLX 35-45 estimate (MTPLX README cites 64.4 tok/s with no hardware listed; boxabirds notes Bonsai 2 lacks MTP heads). Bonus: Qwen3.6-35B-A3B via Splash speculative hits 145.3 tok/s decode on M1 Max 64GB (incoai/Qwen3.6-35B-A3B-Splash). LFM2.5-24B-A2B and MiniCPM-V-4.7-35B-A3B still have zero community Apple Silicon measurements.",
+   "title_ko": "Ternary-Bonsai-2-27B M1 Max 측정 데이터 공개; Qwen3.6-35B-A3B, Splash에서 145.3 tok/s 기록",
+   "body_ko": "Bonsai 2 정량화 데이터가 실제 M1 Max 64GB 측정값으로 교체됨: Splash speculative 27.6 tok/s (npanj 벤치) 및 49-58 tok/s (짧은 프롬프트), oMLX + prism-hadamard 18.1 tok/s warm. 기존 MTPLX 35-45 추정치 제거 (MTPLX README는 하드웨어 미기재 상태에서 64.4 tok/s 인용; boxabirds에 따르면 Bonsai 2에는 MTP 헤드 없음). 보너스: Qwen3.6-35B-A3B가 Splash speculative로 M1 Max 64GB에서 145.3 tok/s decode 달성 (incoai/Qwen3.6-35B-A3B-Splash). LFM2.5-24B-A2B와 MiniCPM-V-4.7-35B-A3B는 여전히 커뮤니티 Apple Silicon 측정값이 없음."
+  },
+  {
+   "body": "User-flagged model added as a formal candidate. Ternary-quantized Qwen3.8-27B (true 1.72 bits/weight): GGUF 5.95GB, MLX 8.60GB. Vendor claims 98.2% of FP16 retained across 20 benchmarks — no independent verification exists. M1 Max: 22-27 tok/s plain MLX (estimated from M3 Max 27.09 measured), 35-45 with MTPLX. Verdict: the size champion (6-9GB), not the speed champion — below the 50 tok/s target.",
+   "date": "2026-10-14",
+   "kind": "model",
+   "title": "Ternary-Bonsai-2-27B added to the candidate list",
+   "title_ko": "Ternary-Bonsai-2-27B 후보 목록에 추가",
+   "body_ko": "사용자 지목으로 정식 후보에 추가. Ternary 양자화 Qwen3.8-27B (진짜 1.72 bits/weight): GGUF 5.95GB, MLX 8.60GB. 벤더는 20개 벤치에서 FP16의 98.2% 유지 주장 — 독립 검증 없음. M1 Max: plain MLX 22-27 tok/s (M3 Max 27.09 실측에서 추정), MTPLX 적용 시 35-45. 판정: 속도 챔피언이 아닌 크기 챔피언 (6-9GB) — 50 tok/s 목표 미달."
+  },
+  {
+   "body": "The 65-80 tok/s M1 Max figure was a bandwidth-proportional estimate from M3 Ultra. Real M1 Max data: 27.7 tok/s at 2K context (shunya1810/apple-silicon-llm-bench, v0.3.5.1) and a same-harness bench showing the DFlash2 drafter slows things down on M1 Max (JamesTervit). On M1 Max's 400GB/s the drafter's bandwidth cost exceeds its savings. Corrected range: 20-28 tok/s measured — TensorFold loses to MTPLX on this chip.",
+   "date": "2026-10-14",
+   "kind": "correction",
+   "title": "TensorFold M1 Max speed corrected: 65-80 (estimate) -> 20-28 (measured)",
+   "title_ko": "TensorFold M1 Max 속도 정정: 65-80 (추정) → 20-28 (실측)",
+   "body_ko": "65-80 tok/s M1 Max 수치는 M3 Ultra에서의 대역폭 비례 추정치였음. 실제 M1 Max 데이터: 2K 컨텍스트에서 27.7 tok/s (shunya1810/apple-silicon-llm-bench, v0.3.5.1), 동일 하네스 벤치에서 DFlash2 drafter가 M1 Max에서 감속 유발 (JamesTervit). M1 Max 400GB/s에서는 drafter의 대역폭 비용이 절감분을 초과. 정정 범위: 실측 20-28 tok/s — 이 칩에서는 TensorFold가 MTPLX에 밀림."
+  },
+  {
+   "body": "The 80-95 tok/s figure was an upward extrapolation from M3 Max-class measurements. Direct M1 Max 64GB measurements: oMLX 53.3, Rapid-MLX 59.9, mlx_lm.server 61.2 tok/s (saschpe/local-llm-bench). The 50 tok/s target floor is still met, but with no headroom. Rank #1 stands.",
+   "date": "2026-10-14",
+   "kind": "correction",
+   "title": "Qwen3.6-35B-A3B M1 Max speed corrected: 80-95 (estimate) -> 50-62 (measured)",
+   "title_ko": "Qwen3.6-35B-A3B M1 Max 속도 정정: 80-95 (추정) → 50-62 (실측)",
+   "body_ko": "80-95 tok/s 수치는 M3 Max급 측정에서의 상향 외삽이었음. M1 Max 64GB 직접 측정: oMLX 53.3, Rapid-MLX 59.9, mlx_lm.server 61.2 tok/s (saschpe/local-llm-bench). 50 tok/s 목표 하한은 여전히 충족, 여유는 없음. 1순위 유지."
+  },
+  {
+   "body": "AutoTrust Labs' decision model built on Qwen3.5-35B-A3B: activates ~3B params per token, scores up to 256 text/image options in one forward pass with calibrated probabilities, ~204ms median latency. Decision Index 0.3: 59.73. NVFP4 25.6GB fits a single 32-48GB GPU. Apache-2.0. Closest match to the classification-criteria-optimized LLM the user was looking for.",
+   "date": "2026-10-14",
+   "kind": "model",
+   "title": "JEV-35B discovered (AutoTrust Labs decision model)",
+   "title_ko": "JEV-35B 발견 (AutoTrust Labs decision 모델)",
+   "body_ko": "AutoTrust Labs의 Qwen3.5-35B-A3B 기반 decision 모델: 토큰당 약 3B 파라미터 활성화, 한 번의 forward pass로 최대 256개 텍스트/이미지 옵션을 보정된 확률로 스코어링, 중간값 약 204ms 지연. Decision Index 0.3: 59.73. NVFP4 25.6GB로 단일 32-48GB GPU에 탑재. Apache-2.0. 사용자가 찾던 분류기준 최적화 LLM에 가장 근접."
+  },
+  {
+   "body": "jundot's native macOS inference server (22.7k stars): MLX backend, OpenAI/Anthropic-compatible API, continuous batching, paged SSD KV cache that survives restarts (33.9k-token cold start 100.9s -> 4.21s). M1 Max 64GB measured 57.8 tok/s on Qwen3.6-35B-A3B. Recommended as the server upgrade path for agent workloads. Install: brew tap jundot/omlx.",
+   "date": "2026-10-14",
+   "kind": "engine",
+   "title": "oMLX discovered (native macOS server)",
+   "title_ko": "oMLX 발견 (네이티브 macOS 서버)",
+   "body_ko": "jundot의 네이티브 macOS 추론 서버 (22.7k 스타): MLX 백엔드, OpenAI/Anthropic 호환 API, continuous batching, 재시작해도 유지되는 paged SSD KV 캐시 (33.9k 토큰 cold start 100.9초 → 4.21초). M1 Max 64GB에서 Qwen3.6-35B-A3B 57.8 tok/s 실측. 에이전트 워크로드용 서버 업그레이드 경로로 추천. 설치: brew tap jundot/omlx."
+  },
+  {
+   "body": "Five-thread parallel survey plus TensorFold integration complete. Key findings: the model choice decides speed more than the engine (35B-A3B does 50-60 on any MLX engine); MLX wins decode 1.1-1.6x but llama.cpp wins prefill 1.7-2.2x (run both for RAG); Strata excluded (Mac engine rejects 35B-A3B); Ollama 0.40.3+ is MLX-by-default and worth re-evaluating. Final picks: LM Studio (now), oMLX (server), MTPLX+Youssofal (speed, verify first).",
+   "date": "2026-10-14",
+   "kind": "engine",
+   "title": "llama.cpp-alternative engine comparison completed",
+   "title_ko": "llama.cpp 대체 엔진 비교 완료",
+   "body_ko": "5스레드 병렬 조사 + TensorFold 통합 완료. 핵심 발견: 엔진보다 모델 선택이 속도를 결정 (35B-A3B는 어떤 MLX 엔진에서도 50-60); decode는 MLX가 1.1-1.6배 빠르지만 prefill은 llama.cpp가 1.7-2.2배 빠름 (RAG용으로 둘 다 운용); Strata 제외 (Mac 엔진이 35B-A3B 거부); Ollama 0.40.3+는 MLX 기본이라 재평가 가치. 최종 선택: LM Studio (지금), oMLX (서버), MTPLX+Youssofal (속도, 먼저 검증)."
+  },
+  {
+   "body": "hokar3361's llama.cpp fork (Metal kernel patches + MTP speculative tuning): 226.9 tok/s on Qwen3.6-35B-A3B (UD-Q4_K_XL) measured on M4 Max 64GB. M1 Max estimate 150-165 tok/s via bandwidth scaling — unverified, and kernels are M4 Max-tuned (author warns other chips may misbehave). 3-day-old repo. Experimental track only.",
+   "date": "2026-10-14",
+   "kind": "engine",
+   "title": "moe-on-a-desk fork discovered (experimental speed track)",
+   "title_ko": "moe-on-a-desk 포크 발견 (실험 속도 트랙)",
+   "body_ko": "hokar3361의 llama.cpp 포크 (Metal 커널 패치 + MTP speculative 튜닝): M4 Max 64GB에서 Qwen3.6-35B-A3B (UD-Q4_K_XL) 226.9 tok/s 실측. M1 Max 추정 150-165 tok/s (대역폭 환산) — 미검증, 커널이 M4 Max 튜닝이라 다른 칩에서 오동작 가능 (작성자 경고). 3일 된 repo. 실험 트랙 전용."
+  },
+  {
+   "body": "Liquid AI's 24B MoE (2B active), agent/tool-call specialized: vendor claims IFEval 96.75, AutomationBench 27.69, ToolSandbox 80.71; knowledge/coding weaker (GPQA 74.42, SWE-bench 51.00). Official MLX-4bit exists but is very early. M1 Max 120-140 tok/s estimated (unverified). Watch-list candidate for agent workloads.",
+   "date": "2026-10-14",
+   "kind": "model",
+   "title": "LFM2.5-24B-A2B discovered (Liquid AI agent MoE)",
+   "title_ko": "LFM2.5-24B-A2B 발견 (Liquid AI 에이전트 MoE)",
+   "body_ko": "Liquid AI의 24B MoE (2B active), 에이전트/툴 호출 특화: 벤더 주장 IFEval 96.75, AutomationBench 27.69, ToolSandbox 80.71; 지식/코딩은 약함 (GPQA 74.42, SWE-bench 51.00). 공식 MLX-4bit 존재하나 매우 초기. M1 Max 120-140 tok/s 추정 (미검증). 에이전트 워크로드용 관망 후보."
+  },
+  {
+   "date": "2026-10-19",
+   "kind": "discovery",
+   "title": "Qwen3.5-9B: first real Apple Silicon measurements (Rapid-MLX 198.4 tok/s on 48GB M4 Pro)",
+   "title_ko": "Qwen3.5-9B: 첫 실제 Apple Silicon 측정 결과 (Rapid-MLX, 48GB M4 Pro에서 198.4 tok/s)",
+   "body": "Two new real Apple Silicon measurements: Rapid-MLX 0.15.6 reaches 198.4 tok/s on Qwen3.5-9B 4-bit (vs 46.4 tok/s stock mlx-lm, 48GB M4 Pro Mac mini, whole-file-edit agent scenario with MTP + prompt lookup speculative decoding). MTPLX reports 112.5 tok/s short context / 99.7 tok/s at 8k on M5 Max for its 6-bit MTP pack. Neither engine has an M1 Max measurement yet.",
+   "body_ko": "새로운 Apple Silicon 실측 2건: Rapid-MLX 0.15.6이 Qwen3.5-9B 4-bit에서 198.4 tok/s를 기록 (stock mlx-lm 46.4 tok/s 대비, 48GB M4 Pro Mac mini, whole-file-edit agent 시나리오). MTPLX는 6-bit MTP pack 기준 M5 Max에서 short context 112.5 tok/s, 8k에서 99.7 tok/s 보고. 두 엔진 모두 M1 Max 측정치는 아직 없음."
+  },
+  {
+   "date": "2026-10-19",
+   "kind": "discovery",
+   "title": "LFM2.5-24B-A2B speed confirmed on vendor blog (184 tok/s M5 Max)",
+   "title_ko": "벤더 블로그에서 LFM2.5-24B-A2B 속도 확인 (184 tok/s M5 Max)",
+   "body": "Liquid AI confirms 184 tok/s decode on Apple M5 Max (114 tok/s on Ryzen AI Max+ 395) for LFM2.5-24B-A2B on its official blog; all runs on its Pipette benchmark infra. Source link upgraded from the X announcement to the vendor blog; numbers unchanged (M1 Max 120-140 tok/s remains a bandwidth-scaled estimate).",
+   "body_ko": "Liquid AI가 공식 블로그에서 LFM2.5-24B-A2B의 Apple M5 Max 기준 184 tok/s decode(Ryzen AI Max+ 395에서는 114 tok/s)를 확인했습니다. 모든 테스트는 Pipette benchmark infra에서 진행되었습니다. 출처 링크가 X 공지에서 벤더 블로그로 변경되었으며, 수치는 변동 없습니다(M1 Max 120-140 tok/s는 대역폭 기반 추정치로 유지)."
+  }
+ ]
 }
